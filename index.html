@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SafePlace</title>
+	<link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 20px auto;
+        }
+
+        .logo {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+
+        .social-links {
+            position: absolute;
+            top: 15px;
+            right: 10px;
+        }
+
+            .social-links a {
+                margin: 0 10px;
+            }
+
+            .social-links img {
+                width: auto;
+                height: auto;
+            }
+
+        .games-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .game {
+            background-color: #111;
+            padding: 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 80%;
+            text-align: left;
+            gap: 20px;
+        }
+
+            .game img {
+                width: 150px;
+                height: 150px;
+                object-fit: cover;
+                border-radius: 25px;
+            }
+
+            .game:hover {
+                background-color: #222;
+            }
+
+        .game-info {
+            flex: 1;
+        }
+
+        .inactive {
+            background-color: #222;
+            cursor: default;
+            opacity: 0.5;
+        }
+
+            .inactive:hover {
+                background-color: #222;
+            }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <img src="logo.png" width="50" height="50" alt="SafePlace Logo" class="logo">
+    <div class="social-links">
+        <a href="https://t.me/Safe_Place_official" target="_blank"><img src="TG.png" alt="Telegram"></a>
+        <a href="https://getgems.io/safeplace" target="_blank"><img src="GetGems.png" alt="GetGems"></a>
+        <a href="https://yandex.ru/games/developer/78226" target="_blank"><img src="YG.png" alt="YG"></a>
+        <!-- <a href="https://www.youtube.com/@Safe--Place" target="_blank"><img src="YT.png" alt="YouTube"></a> -->
+        <a href="https://dzen.ru/safe_place_official" target="_blank"><img src="Dzen.png" alt="Dzen"></a>
+    </div>
+    <div class="container">
+        <h1>SafePlace</h1>
+        <div class="games-container">
+            <div class="game" onclick="location.href='https://yandex.ru/games/app/369278?lang=ru'">
+                <img src="1.webp" alt="Дуров, побег из тюрьмы">
+                <div class="game-info">
+                    <h2>Дуров, побег из тюрьмы</h2>
+                    <p>Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.</p>
+                </div>
+            </div>
+            <div class="game" onclick="location.href='https://yandex.ru/games/app/306352?lang=ru'">
+                <img src="4.webp" alt="Крестики нолики 2.0">
+                <div class="game-info">
+                    <h2>Крестики нолики 2.0</h2>
+                    <p>Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.</p>
+                </div>
+            </div>
+            <div class="game" onclick="location.href='https://yandex.ru/games/app/358275?lang=ru'">
+                <img src="5.webp" alt="Rocket Simulator">
+                <div class="game-info">
+                    <h2>Rocket Simulator</h2>
+                    <p>Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.</p>
+                </div>
+            </div>
+            <div class="game" onclick="location.href='https://yandex.ru/games/app/400084?lang=ru'">
+                <img src="2.webp" alt="Интеллектуальный марафон">
+                <div class="game-info">
+                    <h2>Интеллектуальный марафон</h2>
+                    <p>Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.</p>
+                </div>
+            </div>
+            <div class="game" onclick="location.href='https://yandex.ru/games/app/389728?lang=ru'">
+                <img src="3.webp" alt="Волки и овцы">
+                <div class="game-info">
+                    <h2>Волки и овцы</h2>
+                    <p>Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют. Простые правила, уникальные партии и развитие логики!</p>
+                </div>
+            </div>
+            <div class="game" onclick="location.href='https://kwit6.github.io/Hive/'">
+                <img src="6.webp" alt="Hive">
+                <div class="game-info">
+                    <h2>Hive</h2>
+                    <p>Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме, упрощая процесс обучения и подготовку к урокам</p>
+                </div>
+            </div>
+            <div class="inactive game">
+                <div class="game-info">
+                    <h2>Drone Delivery (В разработке)</h2>
+                    <p>Симулятор доставки пиццы при помощи дронов.</p>
+                    <p>Дата выхода: 2025</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
