@@ -4,165 +4,598 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafePlace</title>
-	<link rel="icon" href="logo.png" type="image/x-icon">
-	<meta property="twitter:title" content="SafePlace" />
-    <meta property="twitter:description" content="Оффициальный сайт SafePlace" />
-    <meta property="og:image" content="https://opengraph.b-cdn.net/production/images/f153c150-5dac-44d3-8dea-24a7b381c8c2.png?token=iDPtfDfQqLn0McGP3TKnUZ4utnJYg5j1_HgrcrjLX5o&height=630&width=1200&expires=33275093182" />
-    <meta property="twitter:url" content="https://safe-place-official.github.io/SafePlace/" />
-    <meta property="twitter:type" content="website" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/x-icon">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Kanit', sans-serif;
             background-color: #000;
             color: #fff;
-            text-align: center;
-            margin: 0;
-            padding: 0;
+            overflow-x: hidden;
         }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-
-        .logo {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-        }
-
-        .social-links {
-            position: static;
-            top: 15px;
-            right: 10px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-        }
-
-            .social-links a {
-                margin: 0 10px;
-            }
-
-            .social-links img {
-                width: auto;
-                height: auto;
-            }
-
-        .games-container {
+        
+        .game-card {
+            transition: all 0.3s ease;
+            transform-style: preserve-3d;
+            position: relative;
+            overflow: hidden;
+            height: 100%;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 15px;
         }
-
-        .game {
-            background-color: #111;
-            padding: 20px;
-            border-radius: 10px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            width: 80%;
-            text-align: left;
-            gap: 20px;
+        
+        .game-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
         }
-
-            .game img {
-                width: 150px;
-                height: 150px;
-                object-fit: cover;
-                border-radius: 25px;
-            }
-
-            .game:hover {
-                background-color: #222;
-            }
-
-        .game-info {
-            flex: 1;
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: 0.5s;
         }
-
-        .inactive {
-            background-color: #222;
-            cursor: default;
-            opacity: 0.5;
+        
+        .game-card:hover::before {
+            left: 100%;
         }
-
-            .inactive:hover {
-                background-color: #222;
-            }
-
-        a {
+        
+        .game-image-container {
+            position: relative;
+            width: 100%;
+            padding-top: 100%; /* 1:1 Aspect Ratio */
+            overflow: hidden;
+        }
+        
+        .game-image {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .coming-soon {
+            position: relative;
+        }
+        
+        .coming-soon::after {
+            content: 'In Development';
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .construction-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #e0e0e0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: pulse 1.5s infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+            }
+        }
+        
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-3px) scale(1.1);
+            filter: drop-shadow(0 5px 5px rgba(255, 255, 255, 0.2));
+        }
+        
+        .bg-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        .scroll-indicator {
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-20px);}
+            60% {transform: translateY(-10px);}
+        }
+        
+        .floating {
+            animation: floating 6s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0,  0px); }
+            50%  { transform: translate(0, 15px); }
+            100%   { transform: translate(0, -0px); }
+        }
+        
+        /* Glassmorphism Effect */
+        .glass {
+            background: rgba(15, 15, 15, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-light {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        
+        /* Radial Gradient Circles */
+        .radial-gradient {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .gradient-purple {
+            background: radial-gradient(circle at center, rgba(155, 89, 182, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        .gradient-blue {
+            background: radial-gradient(circle at center, rgba(52, 152, 219, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 100;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .mobile-menu.active {
+            display: flex;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-buttons button {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+        
+        /* Custom diamond icon for GetGems */
+        .diamond-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            background-color: currentColor;
+            transform: rotate(45deg);
+            margin-right: 0.5em;
+        }
+        
+        /* Blur effect for coming soon game */
+        .coming-soon-blur {
+            filter: blur(4px);
+            opacity: 0.7;
+        }
+        
+        /* White-gray hammer icon */
+        .hammer-icon {
+            color: #e0e0e0;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
-<body>
-    <img src="logo.png" width="50" height="50" alt="SafePlace Logo" class="logo">
-    <div class="container">
-        <h1>SafePlace</h1>
-        <div class="games-container">
-            <div class="game" onclick="location.href='https://yandex.ru/games/app/369278?lang=ru'">
-                <img src="1.webp" alt="Дуров, побег из тюрьмы">
-                <div class="game-info">
-                    <h2>Дуров, побег из тюрьмы</h2>
-                    <p>Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.</p>
-                </div>
+<body class="bg-black bg-pattern">
+    <!-- Background Gradient Elements -->
+    <div class="radial-gradient gradient-purple w-96 h-96 -top-64 -right-64"></div>
+    <div class="radial-gradient gradient-blue w-96 h-96 -bottom-64 -left-64"></div>
+    
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-gray-800 py-4">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="logo.png" alt="SafePlace Logo" class="w-10 h-10">
+                <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
             </div>
-            <div class="game" onclick="location.href='https://yandex.ru/games/app/306352?lang=ru'">
-                <img src="4.webp" alt="Крестики нолики 2.0">
-                <div class="game-info">
-                    <h2>Крестики нолики 2.0</h2>
-                    <p>Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.</p>
-                </div>
+            <div class="hidden md:flex space-x-6">
+                <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fab fa-telegram"></i>
+                </a>
+                <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fas fa-gamepad"></i>
+                </a>
+                <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fas fa-newspaper"></i>
+                </a>
+                <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                    <i class="fas fa-gem"></i>
+                </a>
             </div>
-            <div class="game" onclick="location.href='https://yandex.ru/games/app/358275?lang=ru'">
-                <img src="5.webp" alt="Rocket Simulator">
-                <div class="game-info">
-                    <h2>Rocket Simulator</h2>
-                    <p>Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.</p>
-                </div>
-            </div>
-            <div class="game" onclick="location.href='https://yandex.ru/games/app/400084?lang=ru'">
-                <img src="2.webp" alt="Intellectual Marathon">
-                <div class="game-info">
-                    <h2>Intellectual Marathon</h2>
-                    <p>Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.</p>
-                </div>
-            </div>
-            <div class="game" onclick="location.href='https://yandex.ru/games/app/389728?lang=ru'">
-                <img src="3.webp" alt="Волки и овцы">
-                <div class="game-info">
-                    <h2>Волки и овцы</h2>
-                    <p>Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют. Простые правила, уникальные партии и развитие логики!</p>
-                </div>
-            </div>
-            <div class="game" onclick="location.href='https://safe-place-official.github.io/Hive/'">
-                <img src="6.webp" alt="Hive">
-                <div class="game-info">
-                    <h2>Hive</h2>
-                    <p>Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме, упрощая процесс обучения и подготовку к урокам</p>
-                </div>
-            </div>
-            <div class="inactive game">
-		<img src="7.webp" alt="Drone Delivery">
-                <div class="game-info">
-                    <h2>Drone Delivery (В разработке)</h2>
-                    <p>Симулятор доставки пиццы при помощи дронов.</p>
-                    <p>Дата выхода: июнь 2025</p>
+            <button id="menu-toggle" class="md:hidden text-white">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu">
+            <button id="menu-close" class="absolute top-6 right-6 text-white text-2xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="flex flex-col items-center space-y-8 text-center">
+                <div class="flex flex-wrap justify-center gap-6">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fas fa-gamepad"></i>
+                    </a>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fas fa-newspaper"></i>
+                    </a>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                        <i class="fas fa-gem"></i>
+                    </a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="social-links">
-        <a href="https://t.me/Safe_Place_official" target="_blank"><img src="TG.png" alt="Telegram"></a>
-        <a href="https://getgems.io/safeplace" target="_blank"><img src="GetGems.png" alt="GetGems"></a>
-        <a href="https://yandex.ru/games/developer/78226" target="_blank"><img src="YG.png" alt="YG"></a>
-        <a href="https://www.youtube.com/@Safe--Place" target="_blank"><img src="YT.png" alt="YouTube"></a>
-        <a href="https://dzen.ru/safe_place_official" target="_blank"><img src="Dzen.png" alt="Dzen"></a>
-    </div>
+    </nav>
+
+    <!-- Hero Section with Glassmorphism -->
+    <section class="relative h-screen flex items-center justify-center overflow-hidden pt-16">
+        <div class="absolute inset-0">
+            <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-black/70 to-black z-10"></div>
+            <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
+        </div>
+        <div class="container mx-auto px-6 z-20 text-center">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">WE CREATE INDIE PRODUCTS</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                Digital site about the digital world.
+            </p>
+            
+            <!-- Floating Glass Cards -->
+            <div class="flex justify-center gap-6 mt-12">
+                <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
+                    <i class="fas fa-gamepad text-4xl mb-3 gradient-text"></i>
+                    <p class="text-xs text-gray-300">5 Games</p>
+                </div>
+                <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
+                    <i class="fas fa-users text-4xl mb-3 gradient-text"></i>
+                    <p class="text-xs text-gray-300">4500+ Players</p>
+                </div>
+                <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
+                    <i class="fas fa-rocket text-4xl mb-3 gradient-text"></i>
+                    <p class="text-xs text-gray-300">Since 2022</p>
+                </div>
+            </div>
+        </div>
+        <div id="scroll-down" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-center scroll-indicator cursor-pointer">
+            <span class="text-gray-300">Explore</span>
+            <br>
+            <i class="fas fa-chevron-down text-gray-300 mt-2 animate-bounce"></i>
+        </div>
+        <div class="absolute top-1/3 left-1/4 w-16 h-16 rounded-full bg-white/10 blur-xl"></div>
+        <div class="absolute bottom-1/4 right-1/3 w-24 h-24 rounded-full bg-white/05 blur-xl"></div>
+    </section>
+
+    <!-- Games Section -->
+    <section id="games" class="py-20 container mx-auto px-6 relative">
+        <!-- Floating Glass Elements -->
+        <div class="glass w-20 h-20 rounded-full absolute -top-10 left-20 -z-10 blur-sm"></div>
+        <div class="glass w-32 h-32 rounded-full absolute -bottom-20 right-20 -z-10 blur-sm"></div>
+        
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold gradient-text mb-4">OUR PRODUCTS</h2>
+            <div class="w-24 h-1 bg-white mx-auto mb-6"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Game 1 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="1.webp" alt="Дуров, побег из тюрьмы" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <div class="flex justify-between items-start">
+                        <h3 class="text-xl font-bold mb-2">Дуров, побег из тюрьмы</h3>
+                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full">NEW</span>
+                    </div>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.
+                    </p>
+                    <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Play Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game 2 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="4.webp" alt="Крестики нолики 2.0" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Крестики нолики 2.0</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.
+                    </p>
+                    <a href="https://yandex.ru/games/app/306352?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Play Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game 3 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="5.webp" alt="Rocket Simulator" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Rocket Simulator</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.
+                    </p>
+                    <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Play Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game 4 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="2.webp" alt="Intellectual Marathon" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Intellectual Marathon</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.
+                    </p>
+                    <a href="https://yandex.ru/games/app/400084?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Play Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game 5 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="3.webp" alt="Волки и овцы" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Волки и овцы</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.
+                    </p>
+                    <a href="https://yandex.ru/games/app/389728?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Play Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Game 6 -->
+            <div class="game-card bg-gray-900 rounded-xl overflow-hidden border border-gray-800">
+                <div class="game-image-container">
+                    <img src="6.webp" alt="Hive" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">Hive</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.
+                    </p>
+                    <a href="https://safe-place-official.github.io/Hive/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
+                        Visit Now <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Coming Soon -->
+            <div class="game-card bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800/50 coming-soon">
+                <div class="game-image-container">
+                    <img src="7.webp" alt="Drone Delivery" class="game-image coming-soon-blur">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                    <div class="construction-icon">
+                        <i class="fas fa-hammer hammer-icon"></i>
+                    </div>
+                </div>
+                <div class="p-6 flex-grow">
+                    <h3 class="text-xl font-bold mb-2">DroneDelivery</h3>
+                    <p class="text-gray-400 mb-4 text-sm">
+                        Симулятор доставки пиццы при помощи дронов.
+                    </p>
+                    <div class="flex justify-start items-centerflex justify-start items-center">
+                        <span class="text-sm bg-gray-700/50 text-gray-300 px-4 py-2 rounded-full">
+                            Coming June 2025
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Game Stats Section with Glassmorphism -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="absolute inset-0 glass opacity-20"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
+                    <div class="text-4xl font-bold mb-2 gradient-text">5</div>
+                    <div class="text-gray-300 text-sm">Games Developed</div>
+                </div>
+				<div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
+                    <div class="text-4xl font-bold mb-2 gradient-text">1</div>
+                    <div class="text-gray-300 text-sm">Site Developed</div>
+                </div>
+                <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
+                    <div class="text-4xl font-bold mb-2 gradient-text">4500+</div>
+                    <div class="text-gray-300 text-sm">Total Players</div>
+                </div>
+                <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
+                    <div class="text-4xl font-bold mb-2 gradient-text">★★★</div>
+                    <div class="text-gray-300 text-sm">Avg Rating on YG</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-gray-900/50 border-t border-gray-800">
+        <div class="container mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-6 md:mb-0">
+                    <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8">
+                    <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
+                </div>
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fas fa-gamepad"></i>
+                    </a>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fab fa-github"></i>
+                    </a>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fas fa-newspaper"></i>
+                    </a>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
+                        <i class="fas fa-gem"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+        });
+        
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+        });
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.remove('active');
+        }
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Scroll down button
+        document.getElementById('scroll-down').addEventListener('click', () => {
+            window.scrollBy({
+                top: window.innerHeight - 100,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Simple animation for elements when they come into view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-fadeIn');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        document.querySelectorAll('.game-card, section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
 </body>
 </html>
