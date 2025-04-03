@@ -8,21 +8,21 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="icon" href="logo.png" type="image/x-icon">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-        
+		@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
         body {
-            font-family: 'Kanit', sans-serif;
+			font-family: 'Rubik', sans-serif;
             background-color: #000;
             color: #fff;
             overflow-x: hidden;
         }
-        
+
         .gradient-text {
             background: linear-gradient(90deg, #fff 0%, #aaa 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        
+
         .game-card {
             transition: all 0.3s ease;
             transform-style: preserve-3d;
@@ -32,34 +32,34 @@
             display: flex;
             flex-direction: column;
         }
-        
-        .game-card:hover {
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
-        }
-        
-        .game-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
-            transition: 0.5s;
-        }
-        
-        .game-card:hover::before {
-            left: 100%;
-        }
-        
+
+            .game-card:hover {
+                transform: translateY(-5px) scale(1.02);
+                box-shadow: 0 20px 25px -5px rgba(255, 255, 255, 0.1), 0 10px 10px -5px rgba(255, 255, 255, 0.04);
+            }
+
+            .game-card::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: -100%;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+                transition: 0.5s;
+            }
+
+            .game-card:hover::before {
+                left: 100%;
+            }
+
         .game-image-container {
             position: relative;
             width: 100%;
             padding-top: 100%; /* 1:1 Aspect Ratio */
             overflow: hidden;
         }
-        
+
         .game-image {
             position: absolute;
             top: 0;
@@ -68,24 +68,24 @@
             height: 100%;
             object-fit: cover;
         }
-        
+
         .coming-soon {
             position: relative;
         }
-        
-        .coming-soon::after {
-            content: 'In Development';
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(0, 0, 0, 0.7);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
+
+            .coming-soon::after {
+                content: attr(data-coming-soon-text);
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(0, 0, 0, 0.7);
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 20px;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
         .construction-icon {
             position: absolute;
             top: 50%;
@@ -106,57 +106,75 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             animation: pulse 1.5s infinite;
         }
-        
+
         .pulse {
             animation: pulse 2s infinite;
         }
-        
+
         @keyframes pulse {
             0% {
                 box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
             }
+
             70% {
                 box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
             }
+
             100% {
                 box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
             }
         }
-        
+
         .social-icon {
             transition: all 0.3s ease;
         }
-        
-        .social-icon:hover {
-            transform: translateY(-3px) scale(1.1);
-            filter: drop-shadow(0 5px 5px rgba(255, 255, 255, 0.2));
-        }
-        
+
+            .social-icon:hover {
+                transform: translateY(-3px) scale(1.1);
+                filter: drop-shadow(0 5px 5px rgba(255, 255, 255, 0.2));
+            }
+
         .bg-pattern {
             background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
         }
-        
+
         .scroll-indicator {
             animation: bounce 2s infinite;
         }
-        
+
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-20px);}
-            60% {transform: translateY(-10px);}
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+
+            40% {
+                transform: translateY(-20px);
+            }
+
+            60% {
+                transform: translateY(-10px);
+            }
         }
-        
+
         .floating {
             animation: floating 6s ease-in-out infinite;
         }
-        
+
         @keyframes floating {
-            0% { transform: translate(0,  0px); }
-            50%  { transform: translate(0, 15px); }
-            100%   { transform: translate(0, -0px); }
+            0% {
+                transform: translate(0, 0px);
+            }
+
+            50% {
+                transform: translate(0, 15px);
+            }
+
+            100% {
+                transform: translate(0, -0px);
+            }
         }
-        
+
         /* Glassmorphism Effect */
         .glass {
             background: rgba(15, 15, 15, 0.25);
@@ -165,13 +183,13 @@
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        
+
         .glass-light {
             background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
-        
+
         /* Radial Gradient Circles */
         .radial-gradient {
             position: absolute;
@@ -180,15 +198,15 @@
             opacity: 0.15;
             z-index: -1;
         }
-        
+
         .gradient-purple {
             background: radial-gradient(circle at center, rgba(155, 89, 182, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
         }
-        
+
         .gradient-blue {
             background: radial-gradient(circle at center, rgba(52, 152, 219, 0.8) 0%, rgba(0, 0, 0, 0) 70%);
         }
-        
+
         /* Mobile menu */
         .mobile-menu {
             display: none;
@@ -203,24 +221,24 @@
             justify-content: center;
             align-items: center;
         }
-        
-        .mobile-menu.active {
-            display: flex;
-        }
-        
+
+            .mobile-menu.active {
+                display: flex;
+            }
+
         /* Responsive adjustments */
         @media (max-width: 768px) {
             .hero-buttons {
                 flex-direction: column;
                 gap: 1rem;
             }
-            
-            .hero-buttons button {
-                width: 100%;
-                max-width: 300px;
-            }
+
+                .hero-buttons button {
+                    width: 100%;
+                    max-width: 300px;
+                }
         }
-        
+
         /* Custom diamond icon for GetGems */
         .diamond-icon {
             display: inline-block;
@@ -230,17 +248,118 @@
             transform: rotate(45deg);
             margin-right: 0.5em;
         }
-        
+
         /* Blur effect for coming soon game */
         .coming-soon-blur {
             filter: blur(4px);
             opacity: 0.7;
         }
-        
+
         /* White-gray hammer icon */
         .hammer-icon {
             color: #e0e0e0;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Platform selector */
+        .platform-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 12px;
+        }
+
+        .platform-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 12px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 12px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+            .platform-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                transform: translateY(-2px);
+            }
+
+            .platform-btn i {
+                margin-right: 5px;
+            }
+
+        /* Language switcher */
+        .language-switcher {
+            position: relative;
+            display: inline-block;
+        }
+
+        .language-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+        }
+
+            .language-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+            }
+
+            .language-btn i {
+                margin-left: 5px;
+            }
+
+        .language-dropdown {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: rgba(30, 30, 30, 0.95);
+            min-width: 120px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .language-switcher:hover .language-dropdown {
+            display: block;
+        }
+
+        .language-option {
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+            color: white;
+            transition: background-color 0.2s;
+        }
+
+            .language-option:hover {
+                background: rgba(255, 255, 255, 0.1);
+            }
+
+        /* Platform icons colors */
+        .yandex {
+            color: #FFFFFF;
+        }
+
+        .itch {
+            color: #FFFFFF;
+        }
+
+        .vkplay {
+            color: #FFFFFF;
+        }
+
+        .rustore {
+            color: #FFFFFF;
         }
     </style>
 </head>
@@ -248,7 +367,7 @@
     <!-- Background Gradient Elements -->
     <div class="radial-gradient gradient-purple w-96 h-96 -top-64 -right-64"></div>
     <div class="radial-gradient gradient-blue w-96 h-96 -bottom-64 -left-64"></div>
-    
+
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass border-b border-gray-800 py-4">
         <div class="container mx-auto px-6 flex justify-between items-center">
@@ -256,7 +375,17 @@
                 <img src="logo.png" alt="SafePlace Logo" class="w-10 h-10">
                 <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
             </div>
-            <div class="hidden md:flex space-x-6">
+            <div class="hidden md:flex items-center space-x-6">
+                <div class="language-switcher">
+                    <button class="language-btn" id="current-language">
+                        <span id="language-text">Русский</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="ru">Русский</a>
+                        <a href="#" class="language-option" data-lang="en">English</a>
+                    </div>
+                </div>
                 <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                     <i class="fab fa-telegram"></i>
                 </a>
@@ -280,13 +409,23 @@
                 <i class="fas fa-bars text-2xl"></i>
             </button>
         </div>
-        
+
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="mobile-menu">
             <button id="menu-close" class="absolute top-6 right-6 text-white text-2xl">
                 <i class="fas fa-times"></i>
             </button>
             <div class="flex flex-col items-center space-y-8 text-center">
+                <div class="language-switcher mb-6">
+                    <button class="language-btn" id="current-language-mobile">
+                        <span id="language-text-mobile">Русский</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="language-dropdown">
+                        <a href="#" class="language-option" data-lang="ru">Русский</a>
+                        <a href="#" class="language-option" data-lang="en">English</a>
+                    </div>
+                </div>
                 <div class="flex flex-wrap justify-center gap-6">
                     <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
                         <i class="fab fa-telegram"></i>
@@ -318,32 +457,36 @@
             <div class="absolute inset-0 bg-black opacity-50 z-0"></div>
         </div>
         <div class="container mx-auto px-6 z-20 text-center">
-            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text">WE CREATE INDIE PRODUCTS</h1>
-            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 gradient-text" data-i18n="hero.title">WE CREATE INDIE PRODUCTS</h1>
+            <p class="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="hero.subtitle">
                 Digital site about the digital world.
             </p>
-            
+
             <!-- Floating Glass Cards -->
             <div class="flex justify-center gap-6 mt-12">
                 <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
                     <i class="fas fa-gamepad text-4xl mb-3 gradient-text"></i>
-                    <p class="text-xs text-gray-300">5 Games</p>
+                    <p class="text-xs text-gray-300" data-i18n="hero.games">5 Games</p>
                 </div>
                 <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
                     <i class="fas fa-users text-4xl mb-3 gradient-text"></i>
-                    <p class="text-xs text-gray-300">4500+ Players</p>
+                    <p class="text-xs text-gray-300" data-i18n="hero.players">4.5K+ Players</p>
                 </div>
                 <div class="glass-light p-6 rounded-xl w-32 text-center transform transition-all hover:scale-110">
                     <i class="fas fa-rocket text-4xl mb-3 gradient-text"></i>
-                    <p class="text-xs text-gray-300">Since 2022</p>
+                    <p class="text-xs text-gray-300" data-i18n="hero.since">Since 2022</p>
                 </div>
             </div>
         </div>
-        <div id="scroll-down" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-center scroll-indicator cursor-pointer">
-            <span class="text-gray-300">Explore</span>
+        <div id="scroll-down"
+             class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-center cursor-pointer">
+            <span class="text-gray-300" data-i18n="hero.explore">Explore</span>
             <br>
             <i class="fas fa-chevron-down text-gray-300 mt-2 animate-bounce"></i>
         </div>
+
+
+
         <div class="absolute top-1/3 left-1/4 w-16 h-16 rounded-full bg-white/10 blur-xl"></div>
         <div class="absolute bottom-1/4 right-1/3 w-24 h-24 rounded-full bg-white/05 blur-xl"></div>
     </section>
@@ -353,9 +496,9 @@
         <!-- Floating Glass Elements -->
         <div class="glass w-20 h-20 rounded-full absolute -top-10 left-20 -z-10 blur-sm"></div>
         <div class="glass w-32 h-32 rounded-full absolute -bottom-20 right-20 -z-10 blur-sm"></div>
-        
+
         <div class="text-center mb-16">
-            <h2 class="text-4xl font-bold gradient-text mb-4">OUR PRODUCTS</h2>
+            <h2 class="text-4xl font-bold gradient-text mb-4" data-i18n="games.title">OUR PRODUCTS</h2>
             <div class="w-24 h-1 bg-white mx-auto mb-6"></div>
         </div>
 
@@ -368,15 +511,17 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <div class="flex justify-between items-start">
-                        <h3 class="text-xl font-bold mb-2">Дуров, побег из тюрьмы</h3>
-                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full">NEW</span>
+                        <h3 class="text-xl font-bold mb-2" data-i18n="games.game1.title">Дуров, побег из тюрьмы</h3>
+                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
                     </div>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game1.description">
                         Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.
                     </p>
-                    <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Play Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="platform-links">
+                        <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="platform-btn yandex">
+                            <i class="fas fa-gamepad"></i> YG
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -387,13 +532,15 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">Крестики нолики 2.0</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <h3 class="text-xl font-bold mb-2" data-i18n="games.game2.title">Крестики нолики 2.0</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game2.description">
                         Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.
                     </p>
-                    <a href="https://yandex.ru/games/app/306352?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Play Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="platform-links">
+                        <a href="https://yandex.ru/games/app/306352?lang=ru" target="_blank" class="platform-btn yandex">
+                            <i class="fas fa-gamepad"></i> YG
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -404,13 +551,15 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">Rocket Simulator</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <h3 class="text-xl font-bold mb-2" data-i18n="games.game3.title">Rocket Simulator</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game3.description">
                         Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.
                     </p>
-                    <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Play Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="platform-links">
+                        <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="platform-btn yandex">
+                            <i class="fas fa-gamepad"></i> YG
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -421,13 +570,15 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">Intellectual Marathon</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <h3 class="text-xl font-bold mb-2" data-i18n="games.game4.title">Intellectual Marathon</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game4.description">
                         Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.
                     </p>
-                    <a href="https://yandex.ru/games/app/400084?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Play Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="platform-links">
+                        <a href="https://yandex.ru/games/app/400084?lang=ru" target="_blank" class="platform-btn yandex">
+                            <i class="fas fa-gamepad"></i> YG
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -438,13 +589,15 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">Волки и овцы</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <h3 class="text-xl font-bold mb-2" data-i18n="games.game5.title">Волки и овцы</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game5.description">
                         Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.
                     </p>
-                    <a href="https://yandex.ru/games/app/389728?lang=ru" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Play Now <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <div class="platform-links">
+                        <a href="https://yandex.ru/games/app/389728?lang=ru" target="_blank" class="platform-btn yandex">
+                            <i class="fas fa-gamepad"></i> YG
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -455,18 +608,18 @@
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
                 </div>
                 <div class="p-6 flex-grow">
-                    <h3 class="text-xl font-bold mb-2">Hive</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <h3 class="text-xl font-bold mb-2" data-i18n="games.game6.title">Hive</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game6.description">
                         Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.
                     </p>
                     <a href="https://safe-place-official.github.io/Hive/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        Visit Now <i class="fas fa-arrow-right ml-2"></i>
+                        <span data-i18n="games.visit">Visit Now</span> <i class="fas fa-arrow-right ml-2"></i>
                     </a>
                 </div>
             </div>
 
             <!-- Coming Soon -->
-            <div class="game-card bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800/50 coming-soon">
+            <div class="game-card bg-gray-900/50 rounded-xl overflow-hidden border border-gray-800/50 coming-soon" data-coming-soon-text="In Development">
                 <div class="game-image-container">
                     <img src="7.webp" alt="Drone Delivery" class="game-image coming-soon-blur">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
@@ -476,11 +629,11 @@
                 </div>
                 <div class="p-6 flex-grow">
                     <h3 class="text-xl font-bold mb-2">DroneDelivery</h3>
-                    <p class="text-gray-400 mb-4 text-sm">
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game7.description">
                         Симулятор доставки пиццы при помощи дронов.
                     </p>
-                    <div class="flex justify-start items-centerflex justify-start items-center">
-                        <span class="text-sm bg-gray-700/50 text-gray-300 px-4 py-2 rounded-full">
+                    <div class="flex justify-start items-center">
+                        <span class="text-sm bg-gray-700/50 text-gray-300 px-4 py-2 rounded-full" data-i18n="games.coming">
                             Coming June 2025
                         </span>
                     </div>
@@ -496,19 +649,19 @@
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
                     <div class="text-4xl font-bold mb-2 gradient-text">5</div>
-                    <div class="text-gray-300 text-sm">Games Developed</div>
-                </div>
-				<div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
-                    <div class="text-4xl font-bold mb-2 gradient-text">1</div>
-                    <div class="text-gray-300 text-sm">Site Developed</div>
+                    <div class="text-gray-300 text-sm" data-i18n="stats.games">Games Completed</div>
                 </div>
                 <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
-                    <div class="text-4xl font-bold mb-2 gradient-text">4500+</div>
-                    <div class="text-gray-300 text-sm">Total Players</div>
+                    <div class="text-4xl font-bold mb-2 gradient-text">4.5K+</div>
+                    <div class="text-gray-300 text-sm" data-i18n="stats.players">Total Players</div>
                 </div>
                 <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
-                    <div class="text-4xl font-bold mb-2 gradient-text">★★★</div>
-                    <div class="text-gray-300 text-sm">Avg Rating on YG</div>
+                    <div class="text-4xl font-bold mb-2 gradient-text">★★★⯨</div>
+                    <div class="text-gray-300 text-sm" data-i18n="stats.rating">Avg Rating on YG</div>
+                </div>
+                <div class="glass p-8 rounded-2xl backdrop-blur-lg transform transition-all hover:scale-105">
+                    <div class="text-4xl font-bold mb-2 gradient-text">∞</div>
+                    <div class="text-gray-300 text-sm" data-i18n="stats.sites">Creative Ideas</div>
                 </div>
             </div>
         </div>
@@ -543,27 +696,133 @@
                     </a>
                 </div>
             </div>
+            <div class="text-center text-gray-400 text-sm mt-8" data-i18n="footer.copyright">
+                © 2025 SafePlace. All rights reserved.
+            </div>
         </div>
     </footer>
 
     <script>
+        // Translation data
+        const translations = {
+            ru: {
+                "hero.title": "WE CREATE INDIE PRODUCTS",
+                "hero.subtitle": "Digital site about the digital world",
+                "hero.games": "5 Игр",
+                "hero.players": "4.5K+ Игроков",
+                "hero.since": "С 2022",
+                "hero.explore": "Исследовать",
+                "games.title": "Наши продукты",
+                "games.new": "NEW",
+                "games.play": "Играть",
+                "games.visit": "Посетить",
+                "games.coming": "Выход в июне 2025",
+                "games.game1.title": "Дуров, побег из тюрьмы",
+                "games.game1.description": "Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.",
+                "games.game2.title": "Крестики нолики 2.0",
+                "games.game2.description": "Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.",
+                "games.game3.title": "Rocket Simulator",
+                "games.game3.description": "Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.",
+                "games.game4.title": "Intellectual Marathon",
+                "games.game4.description": "Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.",
+                "games.game5.title": "Волки и овцы",
+                "games.game5.description": "Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.",
+                "games.game6.title": "Hive",
+                "games.game6.description": "Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.",
+                "games.game7.description": "Симулятор доставки пиццы при помощи дронов.",
+                "stats.games": "Игр завершено",
+                "stats.sites": "Креативных идей",
+                "stats.players": "Игроков",
+                "stats.rating": "Средний рейтинг на YG",
+                "footer.copyright": "© 2025 SafePlace. Все права защищены."
+            },
+            en: {
+                "hero.title": "WE CREATE INDIE PRODUCTS",
+                "hero.subtitle": "Digital site about the digital world",
+                "hero.games": "5 Games",
+                "hero.players": "4.5K+ Players",
+                "hero.since": "Since 2022",
+                "hero.explore": "Explore",
+                "games.title": "OUR PRODUCTS",
+                "games.new": "NEW",
+                "games.play": "Play Now",
+                "games.visit": "Visit Now",
+                "games.coming": "Coming June 2025",
+                "games.game1.title": "Durov, escape from prison",
+                "games.game1.description": "Imagine yourself as Pavel Durov and try to escape from a French prison.",
+                "games.game2.title": "Tic Tac Toe 2.0",
+                "games.game2.description": "A continuation of the classic game with new features. It's unique in that it offers a choice between standard and super game.",
+                "games.game3.title": "Rocket Simulator",
+                "games.game3.description": "Build a rocket and embark on a space adventure, avoiding meteorite collisions and collecting coins.",
+                "games.game4.title": "Intellectual Marathon",
+                "games.game4.description": "A quiz with 100 questions, each of which must be answered in 60 seconds.",
+                "games.game5.title": "Wolves and Sheep",
+                "games.game5.description": "A strategy game for two: the sheep tries to pass through the wolves, and they block it.",
+                "games.game6.title": "Hive",
+                "games.game6.description": "A website for teenager where you can easily find notes by class, subject and topic.",
+                "games.game7.description": "Pizza delivery simulator using drones.",
+                "stats.games": "Games Completed",
+                "stats.sites": "Creative Ideas",
+                "stats.players": "Players",
+                "stats.rating": "Avg Rating on YG",
+                "footer.copyright": "© 2025 SafePlace. All rights reserved."
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'ru';
+
+        // Function to translate the page
+        function translatePage(lang) {
+            currentLanguage = lang;
+            document.getElementById('language-text').textContent = lang === 'ru' ? 'Русский' : 'English';
+            document.getElementById('language-text-mobile').textContent = lang === 'ru' ? 'Русский' : 'English';
+
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = translations[lang][key];
+                    } else {
+                        element.textContent = translations[lang][key];
+                    }
+                }
+            });
+
+            // Update coming soon text
+            const comingSoonElements = document.querySelectorAll('.coming-soon');
+            comingSoonElements.forEach(el => {
+                el.setAttribute('data-coming-soon-text', lang === 'ru' ? 'В разработке' : 'In Development');
+            });
+        }
+
+        // Language switcher functionality
+        document.querySelectorAll('.language-option').forEach(option => {
+            option.addEventListener('click', function (e) {
+                e.preventDefault();
+                const lang = this.getAttribute('data-lang');
+                translatePage(lang);
+            });
+        });
+
         // Mobile menu functionality
         const menuToggle = document.getElementById('menu-toggle');
         const menuClose = document.getElementById('menu-close');
         const mobileMenu = document.getElementById('mobile-menu');
-        
+
         menuToggle.addEventListener('click', () => {
             mobileMenu.classList.add('active');
         });
-        
+
         menuClose.addEventListener('click', () => {
             mobileMenu.classList.remove('active');
         });
-        
+
         function closeMobileMenu() {
             mobileMenu.classList.remove('active');
         }
-        
+
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -573,7 +832,7 @@
                 });
             });
         });
-        
+
         // Scroll down button
         document.getElementById('scroll-down').addEventListener('click', () => {
             window.scrollBy({
@@ -581,7 +840,7 @@
                 behavior: 'smooth'
             });
         });
-        
+
         // Simple animation for elements when they come into view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -596,6 +855,9 @@
         document.querySelectorAll('.game-card, section').forEach(el => {
             observer.observe(el);
         });
+
+        // Initialize page with Russian language
+        translatePage('ru');
     </script>
 </body>
 </html>
