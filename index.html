@@ -98,7 +98,7 @@
             width: 60px;
             height: 60px;
             display: flex;
-            align-items: center;
+                align-items: center;
             justify-content: center;
             font-size: 24px;
             color: #e0e0e0;
@@ -237,6 +237,16 @@
                     width: 100%;
                     max-width: 300px;
                 }
+            
+            /* Hide social icons in header on mobile */
+            .header-social-icons {
+                display: none !important;
+            }
+            
+            /* Hide menu toggle button */
+            #menu-toggle {
+                display: none !important;
+            }
         }
 
         /* Custom diamond icon for GetGems */
@@ -375,7 +385,7 @@
                 <img src="logo.png" alt="SafePlace Logo" class="w-10 h-10">
                 <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
             </div>
-            <div class="hidden md:flex items-center space-x-6">
+            <div class="flex items-center space-x-6">
                 <div class="language-switcher">
                     <button class="language-btn" id="current-language">
                         <span id="language-text">Русский</span>
@@ -386,63 +396,23 @@
                         <a href="#" class="language-option" data-lang="en">English</a>
                     </div>
                 </div>
-                <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fab fa-telegram"></i>
-                </a>
-                <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fas fa-gamepad"></i>
-                </a>
-                <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fab fa-github"></i>
-                </a>
-                <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fab fa-youtube"></i>
-                </a>
-                <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fas fa-newspaper"></i>
-                </a>
-                <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                    <i class="fas fa-gem"></i>
-                </a>
-            </div>
-            <button id="menu-toggle" class="md:hidden text-white">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu">
-            <button id="menu-close" class="absolute top-6 right-6 text-white text-2xl">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="flex flex-col items-center space-y-8 text-center">
-                <div class="language-switcher mb-6">
-                    <button class="language-btn" id="current-language-mobile">
-                        <span id="language-text-mobile">Русский</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </button>
-                    <div class="language-dropdown">
-                        <a href="#" class="language-option" data-lang="ru">Русский</a>
-                        <a href="#" class="language-option" data-lang="en">English</a>
-                    </div>
-                </div>
-                <div class="flex flex-wrap justify-center gap-6">
-                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                <div class="header-social-icons hidden md:flex items-center space-x-6">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fab fa-telegram"></i>
                     </a>
-                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fas fa-gamepad"></i>
                     </a>
-                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fab fa-github"></i>
                     </a>
-                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fab fa-youtube"></i>
                     </a>
-                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fas fa-newspaper"></i>
                     </a>
-                    <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-2xl">
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
                         <i class="fas fa-gem"></i>
                     </a>
                 </div>
@@ -484,8 +454,6 @@
             <br>
             <i class="fas fa-chevron-down text-gray-300 mt-2 animate-bounce"></i>
         </div>
-
-
 
         <div class="absolute top-1/3 left-1/4 w-16 h-16 rounded-full bg-white/10 blur-xl"></div>
         <div class="absolute bottom-1/4 right-1/3 w-24 h-24 rounded-full bg-white/05 blur-xl"></div>
@@ -718,7 +686,7 @@
                 "games.visit": "Посетить",
                 "games.coming": "Выход в июне 2025",
                 "games.game1.title": "Дуров, побег из тюрьмы",
-                "games.game1.description": "Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.",
+                "games.game1.description": "Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.",
                 "games.game2.title": "Крестики нолики 2.0",
                 "games.game2.description": "Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.",
                 "games.game3.title": "Rocket Simulator",
@@ -776,7 +744,6 @@
         function translatePage(lang) {
             currentLanguage = lang;
             document.getElementById('language-text').textContent = lang === 'ru' ? 'Русский' : 'English';
-            document.getElementById('language-text-mobile').textContent = lang === 'ru' ? 'Русский' : 'English';
 
             // Update all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -803,25 +770,23 @@
                 e.preventDefault();
                 const lang = this.getAttribute('data-lang');
                 translatePage(lang);
+                
+                // Close dropdown after selection
+                document.querySelector('.language-dropdown').style.display = 'none';
             });
         });
 
-        // Mobile menu functionality
-        const menuToggle = document.getElementById('menu-toggle');
-        const menuClose = document.getElementById('menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
+        // Toggle dropdown on button click
+        document.querySelector('.language-btn').addEventListener('click', function(e) {
+            e.stopPropagation();
+            const dropdown = document.querySelector('.language-dropdown');
+            dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
         });
 
-        menuClose.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function() {
+            document.querySelector('.language-dropdown').style.display = 'none';
         });
-
-        function closeMobileMenu() {
-            mobileMenu.classList.remove('active');
-        }
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
