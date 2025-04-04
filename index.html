@@ -387,6 +387,61 @@
         .rustore {
             color: #FFFFFF;
         }
+
+        /* Social media section */
+        .social-media-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+        }
+
+        .social-media-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .social-media-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .social-media-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 60px;
+            transition: all 0.3s ease;
+        }
+
+        .social-media-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .social-media-btn:hover .social-media-icon {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .social-media-label {
+            font-size: 12px;
+            color: #aaa;
+            text-align: center;
+        }
     </style>
 </head>
 <body class="bg-black bg-pattern">
@@ -411,26 +466,6 @@
                         <a href="#" class="language-option" data-lang="ru">Русский</a>
                         <a href="#" class="language-option" data-lang="en">English</a>
                     </div>
-                </div>
-                <div class="header-social-icons hidden md:flex items-center space-x-6">
-                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fab fa-telegram"></i>
-                    </a>
-                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fas fa-gamepad"></i>
-                    </a>
-                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fab fa-github"></i>
-                    </a>
-                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fab fa-youtube"></i>
-                    </a>
-                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fas fa-newspaper"></i>
-                    </a>
-                    <a href="https://getgems.io/safeplace" target="_blank" class="social-icon text-white hover:text-gray-300 text-xl">
-                        <i class="fas fa-gem"></i>
-                    </a>
                 </div>
             </div>
         </div>
@@ -463,7 +498,54 @@
                     <p class="text-xs text-gray-300" data-i18n="hero.since">Since 2022</p>
                 </div>
             </div>
+			
+			<!-- Social Media Section -->
+            <div class="social-media-section">
+                <h3 class="social-media-title" data-i18n="social.title">Our Social Media</h3>
+                <div class="social-media-container">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fab fa-telegram"></i>
+                        </div>
+                        <span class="social-media-label">Telegram</span>
+                    </a>
+                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <span class="social-media-label">Yandex Games</span>
+                    </a>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fab fa-github"></i>
+                        </div>
+                        <span class="social-media-label">GitHub</span>
+                    </a>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <span class="social-media-label">YouTube</span>
+                    </a>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
+                        <span class="social-media-label">Dzen</span>
+                    </a>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon" style="color: #ffffff;">
+                            <i class="fas fa-gem"></i>
+                        </div>
+                        <span class="social-media-label">GetGems</span>
+                    </a>
+                </div>
         </div>
+		
+		
+		
+		
+		
         <div id="scroll-down"
              class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-center cursor-pointer">
             <span class="text-gray-300" data-i18n="hero.explore">Explore</span>
@@ -648,6 +730,7 @@
                     <div class="text-gray-300 text-sm" data-i18n="stats.sites">Creative Ideas</div>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
@@ -718,6 +801,7 @@
                 "stats.sites": "Креативных идей",
                 "stats.players": "Игроков",
                 "stats.rating": "Средний рейтинг на YG",
+                "social.title": "Наши соцсети",
                 "footer.copyright": "© 2025 SafePlace. Все права защищены."
             },
             en: {
@@ -749,6 +833,7 @@
                 "stats.sites": "Creative Ideas",
                 "stats.players": "Players",
                 "stats.rating": "Avg Rating on YG",
+                "social.title": "Our Social Media",
                 "footer.copyright": "© 2025 SafePlace. All rights reserved."
             }
         };
