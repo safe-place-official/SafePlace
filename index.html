@@ -228,12 +228,6 @@
 
         /* Responsive adjustments */
         @media (max-width: 768px) {
-		
-		    /* Убираем остаточные отступы */
-    .header > div > .flex.items-center {
-        gap: 0 !important;
-    }
-	
             .hero-buttons {
                 flex-direction: column;
                 gap: 1rem;
@@ -244,18 +238,17 @@
                     max-width: 300px;
                 }
             
-                .language-switcher {
-        margin-right: 0 !important;
-        margin-left: auto; /* Выравниваем вправо */
-    }
-    
-    /* Гарантируем, что соц. иконки не влияют на поток */
-    .header-social-icons {
-        display: none !important;
-        width: 0;
-        height: 0;
-        overflow: hidden;
-    }
+            /* Hide social icons in header on mobile */
+            .header-social-icons {
+                display: none !important;
+            }
+            
+            /* Language switcher mobile adjustments */
+            .language-switcher {
+			position: static; /* Изменяем на статичное позиционирование */
+			margin-right: 0;
+			order: -1; /* Перемещаем переключатель в начало контейнера */
+			}
 
 		.language-dropdown {
 			position: fixed;
@@ -403,13 +396,13 @@
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 glass border-b border-gray-800 py-4">
-            <div class="container mx-auto px-6 flex justify-between items-center flex-wrap">
+        <div class="container mx-auto px-6 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <img src="logo.png" alt="SafePlace Logo" class="w-10 h-10">
                 <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
             </div>
-			<div class="flex items-center">
-				<div class="language-switcher mr-4"> 
+            <div class="flex items-center space-x-6">
+                <div class="language-switcher">
                     <button class="language-btn" id="current-language">
                         <span id="language-text">Русский</span>
                         <i class="fas fa-chevron-down"></i>
