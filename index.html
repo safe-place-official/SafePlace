@@ -354,17 +354,12 @@
                 margin-bottom: 1rem;
             }
 
-            .mobile-menu-btn {
-                display: block;
-            }
-
             .language-switcher {
-                display: none;
+                display: block;
             }
 
             .mobile-language-switcher {
-                display: block;
-                margin-top: 2rem;
+                display: none;
             }
 
             .social-media-container {
@@ -424,7 +419,7 @@
                 <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
             </div>
 
-            <div class="hidden md:flex items-center space-x-6">
+            <div class="flex items-center space-x-6">
                 <div class="language-switcher">
                     <button class="language-btn" id="current-language">
                         <span id="language-text">Русский</span>
@@ -436,29 +431,8 @@
                     </div>
                 </div>
             </div>
-
-            <button class="mobile-menu-btn md:hidden" id="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
         </div>
     </nav>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobile-menu">
-        <button class="close-menu-btn" id="close-menu-btn">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="mobile-language-switcher language-switcher mt-8">
-            <button class="language-btn" id="mobile-current-language">
-                <span id="mobile-language-text">Русский</span>
-                <i class="fas fa-chevron-down ml-2 text-xs"></i>
-            </button>
-            <div class="language-dropdown">
-                <a href="#" class="language-option" data-lang="ru">Русский</a>
-                <a href="#" class="language-option" data-lang="en">English</a>
-            </div>
-        </div>
-    </div>
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
@@ -785,7 +759,6 @@
             currentLanguage = lang;
             const langText = lang === 'ru' ? 'Русский' : 'English';
             document.getElementById('language-text').textContent = langText;
-            document.getElementById('mobile-language-text').textContent = langText;
 
             // Update all elements with data-i18n attribute
             document.querySelectorAll('[data-i18n]').forEach(element => {
@@ -805,29 +778,6 @@
                 el.setAttribute('data-coming-soon-text', comingSoonText);
             });
         }
-
-        // Mobile menu functionality
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const closeMenuBtn = document.getElementById('close-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        });
-
-        closeMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.mobile-menu-item').forEach(item => {
-            item.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                document.body.style.overflow = '';
-            });
-        });
 
         // Language switcher functionality
         document.querySelectorAll('.language-option').forEach(option => {
