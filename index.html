@@ -243,9 +243,19 @@
                 display: none !important;
             }
             
-            /* Hide menu toggle button */
-            #menu-toggle {
-                display: none !important;
+            /* Language switcher mobile adjustments */
+            .language-switcher {
+                position: relative;
+                margin-right: 10px;
+            }
+            
+            .language-dropdown {
+                position: fixed;
+                left: 50%;
+                transform: translateX(-50%);
+                bottom: 20px;
+                width: 90%;
+                max-width: 300px;
             }
         }
 
@@ -317,6 +327,7 @@
             display: flex;
             align-items: center;
             transition: all 0.2s ease;
+            white-space: nowrap;
         }
 
             .language-btn:hover {
@@ -325,6 +336,7 @@
 
             .language-btn i {
                 margin-left: 5px;
+                font-size: 12px;
             }
 
         .language-dropdown {
@@ -349,6 +361,7 @@
             display: block;
             color: white;
             transition: background-color 0.2s;
+            white-space: nowrap;
         }
 
             .language-option:hover {
@@ -483,7 +496,7 @@
                         <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
                     </div>
                     <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game1.description">
-                        Представьте себя в роли Павла Дурова и попытайтесь совершить побег из французской тюрьмы.
+                        Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.
                     </p>
                     <div class="platform-links">
                         <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="platform-btn yandex">
