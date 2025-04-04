@@ -245,18 +245,21 @@
             
             /* Language switcher mobile adjustments */
             .language-switcher {
-                position: relative;
-                margin-right: 10px;
-            }
-            
-            .language-dropdown {
-                position: fixed;
-                left: 50%;
-                transform: translateX(-50%);
-                bottom: 20px;
-                width: 90%;
-                max-width: 300px;
-            }
+			position: static; /* Изменяем на статичное позиционирование */
+			margin-right: 0;
+			order: -1; /* Перемещаем переключатель в начало контейнера */
+			}
+
+		.language-dropdown {
+			position: fixed;
+			left: 50%;
+			transform: translateX(-50%);
+			top: 50px; /* Позиционируем ниже хедера */
+			bottom: auto;
+			width: 90%;
+			max-width: 200px;
+			animation: slideDown 0.3s ease;
+		}
         }
 
         /* Custom diamond icon for GetGems */
