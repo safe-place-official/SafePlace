@@ -137,6 +137,10 @@
             margin-top: 12px;
         }
 
+        .platform-btn i {
+            margin-right: 6px;
+        }
+
         .platform-btn {
             display: inline-flex;
             align-items: center;
@@ -217,21 +221,43 @@
         }
 
         .social-media-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 24px;
+            font-size: 20px;
             margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
         .social-media-btn:hover .social-media-icon {
-            transform: translateY(-5px) scale(1.1);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+            transform: translateY(-4px) scale(1.08);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .social-media-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
+            border-radius: inherit;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-media-btn:hover .social-media-icon::before {
+            opacity: 0.6;
         }
 
         /* Animations */
@@ -355,24 +381,22 @@
             overflow: hidden;
         }
 
-        .progress-fill::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(90deg, 
-                            rgba(255, 255, 255, 0) 0%, 
-                            rgba(255, 255, 255, 0.3) 50%, 
-                            rgba(255, 255, 255, 0) 100%);
-            animation: shimmer 2s infinite;
-        }
+            .progress-fill::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 50%, rgba(255, 255, 255, 0) 100%);
+                animation: shimmer 2s infinite;
+            }
 
         @keyframes shimmer {
             0% {
                 transform: translateX(-100%);
             }
+
             100% {
                 transform: translateX(100%);
             }
@@ -532,6 +556,29 @@
         </div>
 
         <div class="grid grid-cols-1 sm:grid-ccols-2 lg:grid-cols-3 gap-4 md:gap-6">
+            <!-- Game 7 -->
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.6s;">
+                <div class="game-image-container">
+                    <img src="7.webp" alt="DroneDelivery" class="game-image">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                </div>
+                <div class="p-4 md:p-6 flex-grow">
+                    <div class="flex items-center gap-2 mb-2">
+                        <h3 class="text-lg md:text-xl font-bold mb-0" data-i18n="games.game7.title">DroneDelivery</h3>
+                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
+                    </div>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game7.description">
+                        Симулятор доставки пиццы при помощи дронов.
+                    </p>
+                    <a href="DroneDelivery_Installer.exe" download class="platform-btn archive">
+                        <i class="fas fa-download"></i><span data-i18n="games.download">Скачать</span>
+                    </a>
+                    <a href="https://safeplace.itch.io/dronedelivery" target="_blank" class="platform-btn itch">
+                        <i class="fas fa-gamepad"></i> Itch
+                    </a>
+                </div>
+            </div>
+
             <!-- Game 1 -->
             <div class="game-card animate-fadeIn will-change">
                 <div class="game-image-container">
@@ -541,7 +588,7 @@
                 <div class="p-4 md:p-6 flex-grow">
                     <div class="flex justify-between items-start">
                         <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game1.title">Дуров, побег из тюрьмы</h3>
-                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
+                        <!-- <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span> -->
                     </div>
                     <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game1.description">
                         Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.
@@ -646,40 +693,6 @@
                     </a>
                 </div>
             </div>
-
-            <!-- Coming Soon -->
-            <div class="game-card animate-fadeIn will-change coming-soon" style="animation-delay: 0.6s;" data-coming-soon-text="In Development">
-                <div class="game-image-container">
-                    <img src="7.webp" alt="Drone Delivery" class="game-image coming-soon-blur">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="construction-icon">
-                        <i class="fas fa-hammer"></i>
-                    </div>
-                </div>
-                <div class="p-4 md:p-6 flex-grow">
-                    <h3 class="text-lg md:text-xl font-bold mb-2">DroneDelivery</h3>
-                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game7.description">
-                        Симулятор доставки пиццы при помощи дронов.
-                    </p>
-                    
-                    <!-- Progress Bar -->
-                    <div class="progress-container">
-                        <div class="progress-info">
-                            <span>Development Progress</span>
-                            <span id="progress-percentage">96%</span>
-                        </div>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progress-fill" style="width: 96%"></div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex justify-start items-center">
-                        <span class="text-sm bg-gray-700/50 text-gray-300 px-3 py-1 md:px-4 md:py-2 rounded-full" data-i18n="games.coming">
-                            Available July 1, 2025
-                        </span>
-                    </div>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -689,7 +702,7 @@
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
                 <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
-                    <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">5</div>
+                    <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">6</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.games">Games Developed</div>
                 </div>
                 <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
@@ -709,31 +722,43 @@
     </section>
 
     <!-- Footer -->
-    <footer class="py-8 md:py-12 bg-black/80 border-t border-gray-800">
+    <footer class="py-8 md:py-12 bg-black/50 backdrop-blur-lg border-t border-white/10">
         <div class="container mx-auto px-4 md:px-6">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
                     <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8">
                     <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
                 </div>
-                <div class="flex space-x-4 md:space-x-6 mb-4 md:mb-0">
-                    <a href="https://t.me/Safe_Place_official" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fab fa-telegram"></i>
+                <div class="flex space-x-4 md:space-x-1 mb-4 md:mb-0">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fab fa-telegram"></i>
+                        </div>
                     </a>
-                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fas fa-gamepad"></i>
+                    <a href="https://yandex.ru/games/developer/78226" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
                     </a>
-                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fab fa-github"></i>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fab fa-github"></i>
+                        </div>
                     </a>
-                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fab fa-youtube"></i>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
                     </a>
-                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fas fa-newspaper"></i>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fas fa-newspaper"></i>
+                        </div>
                     </a>
-                    <a href="https://getgems.io/safeplace" target="_blank" class="text-white hover:text-gray-300 text-xl transition">
-                        <i class="fas fa-gem"></i>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon">
+                            <i class="fas fa-gem"></i>
+                        </div>
                     </a>
                 </div>
             </div>
@@ -749,7 +774,7 @@
             ru: {
                 "hero.title": "WE CREATE INDIE PRODUCTS",
                 "hero.subtitle": "Цифровой сайт о цифровом мире",
-                "hero.games": "5 Игр",
+                "hero.games": "6 Игр",
                 "hero.players": "4.5K+ Игроков",
                 "hero.since": "С 2022",
                 "hero.explore": "Исследовать",
@@ -760,6 +785,7 @@
                 "games.new": "NEW",
                 "games.play": "Играть",
                 "games.visit": "Посетить",
+                "games.download": "Скачать",
                 "games.coming": "Выход 1 июля 2025",
                 "games.game1.title": "Дуров, побег из тюрьмы",
                 "games.game1.description": "Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.",
@@ -773,6 +799,7 @@
                 "games.game5.description": "Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.",
                 "games.game6.title": "Hive",
                 "games.game6.description": "Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.",
+                "games.game7.title": "DroneDelivery",
                 "games.game7.description": "Симулятор доставки пиццы при помощи дронов.",
                 "stats.games": "Разработанно игр",
                 "stats.sites": "Креативных идей",
@@ -784,7 +811,7 @@
             en: {
                 "hero.title": "WE CREATE INDIE PRODUCTS",
                 "hero.subtitle": "Digital site about the digital world",
-                "hero.games": "5 Games",
+                "hero.games": "6 Games",
                 "hero.players": "4.5K+ Players",
                 "hero.since": "Since 2022",
                 "hero.explore": "Explore",
@@ -795,6 +822,7 @@
                 "games.new": "NEW",
                 "games.play": "Play Now",
                 "games.visit": "Visit Now",
+                "games.download": "Download Now",
                 "games.coming": "Available July 1, 2025",
                 "games.game1.title": "Durov, escape from prison",
                 "games.game1.description": "Imagine yourself as Pavel Durov and try to escape from a French prison.",
@@ -808,6 +836,7 @@
                 "games.game5.description": "A strategy game for two: the sheep tries to pass through the wolves, and they block it.",
                 "games.game6.title": "Hive",
                 "games.game6.description": "A website for teenager where you can easily find notes by class, subject and topic.",
+                "games.game7.title": "DroneDelivery",
                 "games.game7.description": "Pizza delivery simulator using drones.",
                 "stats.games": "Games Developed",
                 "stats.sites": "Creative Ideas",
