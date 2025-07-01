@@ -444,6 +444,17 @@
             .social-media-container {
                 grid-template-columns: repeat(3, 1fr);
             }
+
+            .footer .flex.space-x-4 {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .footer .social-media-btn {
+                width: 70px; /* немного уменьшим ширину для мобильных */
+                margin: 0 5px;
+            }
         }
 
         @media (max-width: 480px) {
@@ -472,6 +483,11 @@
             .footer-social {
                 justify-content: center;
                 margin: 1rem 0;
+            }
+
+            .footer .flex.space-x-4 {
+                max-width: 300px;
+                margin: 0 auto;
             }
         }
 
