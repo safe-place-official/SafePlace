@@ -1,0 +1,149 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Page Not Found | SafePlace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        /* Copy all the same styles from the main page */
+        @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
+
+        :root {
+            --primary-bg: #0a0a0a;
+            --secondary-bg: #1a1a1a;
+            --accent-color: #3b82f6;
+            --text-primary: #ffffff;
+            --text-secondary: #d1d5db;
+        }
+
+        body {
+            font-family: 'Rubik', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-primary);
+            overflow: hidden;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: none;
+        }
+
+        .gradient-text {
+            background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glass {
+            background: rgba(15, 15, 15, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .floating {
+            animation: float 6s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-black h-screen w-screen overflow-hidden">
+    <!-- Background Gradient Elements -->
+    <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-blue-500/10 blur-[80px] opacity-20 z-0"></div>
+    <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-500/10 blur-[80px] opacity-20 z-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800 py-3 px-4">
+        <div class="container mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8 md:w-10 md:h-10">
+                <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 404 Content -->
+    <main class="h-screen flex items-center justify-center px-4 relative z-10">
+        <div class="text-center max-w-2xl mx-auto">
+            <div class="glass p-8 md:p-12 rounded-2xl backdrop-blur-lg">
+                <div class="floating inline-block mb-8">
+                    <i class="fas fa-exclamation-triangle text-6xl md:text-8xl gradient-text"></i>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">404</h1>
+                <h2 class="text-xl md:text-2xl font-semibold mb-6" data-i18n="404.title">Page Not Found</h2>
+                <p class="text-gray-300 mb-8" data-i18n="404.message">
+                    The page you're looking for doesn't exist or has been moved.
+                </p>
+                <div class="flex flex-wrap justify-center gap-4">
+<a href="/" class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all flex items-center">
+    <i class="fas fa-home mr-2"></i>
+    <span data-i18n="">Return Home</span>
+</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="absolute bottom-0 w-full py-8 md:py-12 bg-black/50 backdrop-blur-lg border-t border-white/10">
+        <div class="container mx-auto px-4 md:px-6">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                    <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8">
+                    <span class="text-xl font-bold gradient-text">SAFEPLACE</span>
+                </div>
+                <div class="text-center text-gray-400 text-sm" data-i18n="footer.copyright">
+                    © 2025 SafePlace. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Translation data for 404 page
+        const translations = {
+            ru: {
+                "404.title": "Страница не найдена",
+                "404.message": "Запрашиваемая страница не существует или была перемещена.",
+                "404.home": "На главную",
+                "404.games": "Наши игры",
+                "footer.copyright": "© 2025 SafePlace. Все права защищены."
+            },
+            en: {
+                "404.title": "Page Not Found",
+                "404.message": "The page you're looking for doesn't exist or has been moved.",
+                "404.home": "Return Home",
+                "404.games": "View Games",
+                "footer.copyright": "© 2025 SafePlace. All rights reserved."
+            }
+        };
+
+        // Current language
+        let currentLanguage = 'ru';
+
+        // Function to translate the page
+        function translatePage(lang) {
+            currentLanguage = lang;
+            
+            // Update all elements with data-i18n attribute
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+        }
+
+        // Initialize page with Russian language
+        translatePage('ru');
+    </script>
+</body>
+</html>
