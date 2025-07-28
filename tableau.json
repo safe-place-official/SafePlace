@@ -1,0 +1,9 @@
+{
+  "version": "1.0",
+  "api_version": 3,
+  "layout": {
+    "logo": "SafeGamesLogo.png",
+    "color": "#000000",
+    "show_title": "none"
+  }
+}
