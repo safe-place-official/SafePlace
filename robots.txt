@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://safe-games.ru/sitemap.xml
