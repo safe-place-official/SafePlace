@@ -516,12 +516,14 @@
     </style>
 </head>
 <body class="bg-black">
-    <!-- Background Gradient Elements -->
+    <!-- Background Elements -->
+    <div class="fixed inset-0 bg-[url('hero-bg.jpg')] bg-cover bg-center opacity-20 z-0"></div>
     <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-blue-500/10 blur-[80px] opacity-20 z-0"></div>
     <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-500/10 blur-[80px] opacity-20 z-0"></div>
+    <div id="particles-js" class="fixed inset-0 z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800 py-3 px-4">
+    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md  py-3 px-4">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8 md:w-10 md:h-10">
@@ -545,7 +547,7 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
-        <div class="absolute inset-0 bg-black/50 z-10"></div>
+        <div class="absolute inset-0 bg-black/0 z-10"></div>
         <div class="absolute inset-0 bg-[url('hero-bg.jpg')] bg-cover bg-center opacity-30 z-0"></div>
 
         <div class="container mx-auto relative z-20 text-center px-4">
@@ -556,15 +558,15 @@
 
             <!-- Floating Glass Cards -->
             <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
-                <div class="glass-light p-4 md:p-6 rounded-xl w-24 md:w-32 text-center transition-all hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
                     <i class="fas fa-gamepad text-3xl md:text-4xl mb-2 gradient-text"></i>
                     <p class="text-xs text-gray-300" data-i18n="hero.games">5 Games</p>
                 </div>
-                <div class="glass-light p-4 md:p-6 rounded-xl w-24 md:w-32 text-center transition-all hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
                     <i class="fas fa-users text-3xl md:text-4xl mb-2 gradient-text"></i>
                     <p class="text-xs text-gray-300" data-i18n="hero.players">4.5K+ Players</p>
                 </div>
-                <div class="glass-light p-4 md:p-6 rounded-xl w-24 md:w-32 text-center transition-all hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
                     <i class="fas fa-rocket text-3xl md:text-4xl mb-2 gradient-text"></i>
                     <p class="text-xs text-gray-300" data-i18n="hero.since">Since 2022</p>
                 </div>
@@ -587,7 +589,7 @@
 
         <div class="grid grid-cols-1 sm:grid-ccols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <!-- Game 7 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.6s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.6s;">
                 <div class="game-image-container">
                     <img src="7.webp" alt="DroneDelivery" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -595,22 +597,22 @@
                 <div class="p-4 md:p-6 flex-grow">
                     <div class="flex items-center gap-2 mb-2">
                         <h3 class="text-lg md:text-xl font-bold mb-0" data-i18n="games.game7.title">DroneDelivery</h3>
-                        <span class="bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
+                        <span class="glass bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
                     </div>
-                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game7.description">
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game7.description">
                         Симулятор доставки пиццы при помощи дронов.
                     </p>
-                    <a href="DroneDelivery_Installer.exe" download class="platform-btn archive">
+                    <a href="DroneDelivery_Installer.exe" download class="glass platform-btn archive">
                         <i class="fas fa-download"></i><span data-i18n="games.download">Скачать</span>
                     </a>
-                    <a href="https://safeplace.itch.io/dronedelivery" target="_blank" class="platform-btn itch">
+                    <a href="https://safeplace.itch.io/dronedelivery" target="_blank" class="glass platform-btn itch">
                         <i class="fas fa-gamepad"></i> Itch
                     </a>
                 </div>
             </div>
 
             <!-- Game 1 -->
-            <div class="game-card animate-fadeIn will-change">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change">
                 <div class="game-image-container">
                     <img src="1.webp" alt="Дуров, побег из тюрьмы" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -624,7 +626,7 @@
                         Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.
                     </p>
                     <div class="platform-links">
-                        <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="platform-btn yandex">
+                        <a href="https://yandex.ru/games/app/369278?lang=ru" target="_blank" class="glass platform-btn yandex">
                             <i class="fas fa-gamepad"></i> YG
                         </a>
                     </div>
@@ -632,7 +634,7 @@
             </div>
 
             <!-- Game 3 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.2s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.2s;">
                 <div class="game-image-container">
                     <img src="5.webp" alt="Rocket Simulator" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -643,7 +645,7 @@
                         Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.
                     </p>
                     <div class="platform-links">
-                        <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="platform-btn yandex">
+                        <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="glass platform-btn yandex">
                             <i class="fas fa-gamepad"></i> YG
                         </a>
                     </div>
@@ -651,7 +653,7 @@
             </div>
 
             <!-- Game 2 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.1s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.1s;">
                 <div class="game-image-container">
                     <img src="4.webp" alt="Крестики нолики 2.0" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -662,7 +664,7 @@
                         Продолжение классической игры с новыми возможностями. Она уникальна тем, что предлагает выбрать между стандартной и супер игрой.
                     </p>
                     <div class="platform-links">
-                        <a href="https://yandex.ru/games/app/306352?lang=ru" target="_blank" class="platform-btn yandex">
+                        <a href="https://yandex.ru/games/app/306352?lang=ru" target="_blank" class="glass platform-btn yandex">
                             <i class="fas fa-gamepad"></i> YG
                         </a>
                     </div>
@@ -670,7 +672,7 @@
             </div>
 
             <!-- Game 4 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.3s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.3s;">
                 <div class="game-image-container">
                     <img src="2.webp" alt="Intellectual Marathon" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -689,7 +691,7 @@
             </div>
 
             <!-- Game 5 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.4s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.4s;">
                 <div class="game-image-container">
                     <img src="3.webp" alt="Волки и овцы" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -700,7 +702,7 @@
                         Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.
                     </p>
                     <div class="platform-links">
-                        <a href="https://yandex.ru/games/app/389728?lang=ru" target="_blank" class="platform-btn yandex">
+                        <a href="https://yandex.ru/games/app/389728?lang=ru" target="_blank" class="glass platform-btn yandex">
                             <i class="fas fa-gamepad"></i> YG
                         </a>
                     </div>
@@ -708,7 +710,7 @@
             </div>
 
             <!-- Game 6 -->
-            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="6.webp" alt="Hive" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -727,29 +729,30 @@
     </section>
 
     <!-- Game Stats Section -->
-    <section id="stats" class="py-12 md:py-20 relative overflow-hidden bg-black/50">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/30 z-0"></div>
+    <section id="stats" class="py-12 md:py-20 relative overflow-hidden bg-black/0">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 to-black/0 z-0"></div>
         <div class="container mx-auto px-4 md:px-6 relative z-10">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">6</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.games">Games Developed</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">4.5K+</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.players">Total Players</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">★★★</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.rating">Avg Rating on YG</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-lg transition-all hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">∞</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.sites">Creative Ideas</div>
                 </div>
             </div>
         </div>
     </section>
+
 
     <!-- Footer -->
     <footer class="py-8 md:py-12 bg-black/50 backdrop-blur-lg border-t border-white/10">
@@ -798,7 +801,29 @@
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        // Particles.js config
+        document.addEventListener('DOMContentLoaded', function () {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#ffffff" },
+                    shape: { type: "triangle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: false, mode: "repulse" },
+                        onclick: { enable: false, mode: "push" }
+                    }
+                }
+            });
+        });
         // Translation data
         const translations = {
             ru: {
@@ -874,7 +899,7 @@
                 "stats.rating": "Avg Rating on YG",
                 "social.title": "Our Social Media",
                 "footer.copyright": "© 2025 SafeGames. All rights reserved."
-                
+
             }
         };
 
