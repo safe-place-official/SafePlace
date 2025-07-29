@@ -375,7 +375,7 @@
             justify-content: space-between;
             margin-bottom: 4px;
             font-size: 12px;
-            color: rgba(255, 255, 255, 0.7);
+            color: rgba(255, 255, 255, 1);
         }
 
         .progress-bar {
@@ -737,7 +737,7 @@
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2">SafeGames</h3>
-                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game8.description">
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game8.description">
                         Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.
                     </p>
 
@@ -753,7 +753,7 @@
                     </div>
 
                     <div class="flex justify-start items-center">
-                        <span class="text-sm bg-gray-700/50 text-gray-300 px-3 py-1 md:px-4 md:py-2 rounded-full" data-i18n="games.coming">
+                        <span class="glass text-sm backdrop-blur-lg bg-white/5 text-white-300 px-3 py-1 md:px-4 md:py-2 rounded-full" data-i18n="games.coming">
                             Coming 2026
                         </span>
                     </div>
@@ -1021,7 +1021,7 @@
         // Scroll down button
         document.getElementById('scroll-down').addEventListener('click', () => {
             window.scrollBy({
-                top: window.innerHeight - 100,
+                top: window.innerHeight - 10,
                 behavior: 'smooth'
             });
         });
