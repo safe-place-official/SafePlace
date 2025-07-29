@@ -587,9 +587,9 @@
             <div class="w-16 h-1 bg-white/50 mx-auto rounded-full"></div>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-ccols-2 lg:grid-cols-3 gap-4 md:gap-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <!-- Game 7 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.6s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="7.webp" alt="DroneDelivery" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -634,7 +634,7 @@
             </div>
 
             <!-- Game 3 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.2s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="5.webp" alt="Rocket Simulator" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -653,7 +653,7 @@
             </div>
 
             <!-- Game 2 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.1s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="4.webp" alt="Крестики нолики 2.0" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -672,7 +672,7 @@
             </div>
 
             <!-- Game 4 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.3s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="2.webp" alt="Intellectual Marathon" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -691,7 +691,7 @@
             </div>
 
             <!-- Game 5 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.4s;">
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="3.webp" alt="Волки и овцы" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -723,6 +723,40 @@
                     <a href="https://safe-place-official.github.io/Hive/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
                         <span data-i18n="games.visit">Visit Now</span> <i class="fas fa-arrow-right ml-2"></i>
                     </a>
+                </div>
+            </div>
+
+            <!-- Coming Soon -->
+            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change coming-soon" style="animation-delay: 0.5s;" data-coming-soon-text="In Development">
+                <div class="game-image-container">
+                    <img src="8.webp" alt="SafeGames" class="game-image coming-soon-blur">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="construction-icon">
+                        <i class="fas fa-hammer"></i>
+                    </div>
+                </div>
+                <div class="p-4 md:p-6 flex-grow">
+                    <h3 class="text-lg md:text-xl font-bold mb-2">SafeGames</h3>
+                    <p class="text-gray-400 mb-4 text-sm" data-i18n="games.game8.description">
+                        Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.
+                    </p>
+
+                    <!-- Progress Bar -->
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span>Development Progress</span>
+                            <span id="progress-percentage">3%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 3%"></div>
+                        </div>
+                    </div>
+
+                    <div class="flex justify-start items-center">
+                        <span class="text-sm bg-gray-700/50 text-gray-300 px-3 py-1 md:px-4 md:py-2 rounded-full" data-i18n="games.coming">
+                            Coming 2026
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -841,7 +875,7 @@
                 "games.play": "Играть",
                 "games.visit": "Посетить",
                 "games.download": "Скачать",
-                "games.coming": "Выход 1 июля 2025",
+                "games.coming": "Релиз в 2026 году",
                 "games.game1.title": "Дуров, побег из тюрьмы",
                 "games.game1.description": "Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.",
                 "games.game2.title": "Крестики нолики 2.0",
@@ -856,6 +890,8 @@
                 "games.game6.description": "Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.",
                 "games.game7.title": "DroneDelivery",
                 "games.game7.description": "Симулятор доставки пиццы при помощи дронов.",
+                "games.game8.title": "SafeGames",
+                "games.game8.description": "Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.",
                 "stats.games": "Разработанно игр",
                 "stats.sites": "Креативных идей",
                 "stats.players": "Игроков",
@@ -878,7 +914,7 @@
                 "games.play": "Play Now",
                 "games.visit": "Visit Now",
                 "games.download": "Download Now",
-                "games.coming": "Available July 1, 2025",
+                "games.coming": "Coming 2026",
                 "games.game1.title": "Durov, escape from prison",
                 "games.game1.description": "Imagine yourself as Pavel Durov and try to escape from a French prison.",
                 "games.game2.title": "Tic Tac Toe 2.0",
@@ -893,6 +929,8 @@
                 "games.game6.description": "A website for teenager where you can easily find notes by class, subject and topic.",
                 "games.game7.title": "DroneDelivery",
                 "games.game7.description": "Pizza delivery simulator using drones.",
+                "games.game8.title": "SafeGames",
+                "games.game8.description": "A platform where developers and players meet without intermediaries. Publish your projects and find games that will not be lost in the algorithms of large stores.",
                 "stats.games": "Games Developed",
                 "stats.sites": "Creative Ideas",
                 "stats.players": "Players",
