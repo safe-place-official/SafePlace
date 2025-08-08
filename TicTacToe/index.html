@@ -19,64 +19,6 @@
     <title>SafePlace Dev | Tic-Tac-Toe 2.0</title>
     <link rel="shortcut icon" href="TemplateData/4.webp">
     <link rel="stylesheet" href="TemplateData/style.css">
-    <script>
-        function enforceLandscape() {
-            const isPortrait = window.innerHeight > window.innerWidth;
-            const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-            const warningElement = document.getElementById("orientation-warning");
-            if (isPortrait) {
-                if (!warningElement) {
-                    const warning = document.createElement("div");
-                    warning.id = "orientation-warning";
-                    warning.style = `
-                                                            position: fixed;
-                                                            top: 0;
-                                                            left: 0;
-                                                            width: 100%;
-                                                            height: 100%;
-                                                            background: #000000;
-                                                            color: white;
-                                                            display: flex;
-                                                            flex-direction: column;
-                                                            justify-content: center;
-                                                            align-items: center;
-                                                            z-index: 9999;
-                                                            font-family: Arial, sans-serif;
-                                                            text-align: center;
-                                                            padding: 20px;
-                                                            line-height: 1.5;
-                                                        `;
-
-                    // Разные сообщения для мобильных и ПК
-                    if (isMobile) {
-                        warning.innerHTML = "Чтобы продолжить играть, поверните устройство в горизонтальную ориентацию.<br> <br>Please turn your device to a horizontal orientation to play.";
-                    } else {
-                        warning.innerHTML = "Чтобы продолжить играть, расширьте окно браузера по горизонтали.<br> <br>Please increase the window width to play.";
-                    }
-
-                    document.body.appendChild(warning);
-                }
-            } else {
-                if (warningElement) {
-                    warningElement.remove();
-                }
-            }
-        }
-
-        // Проверяем при загрузке и изменении размера
-        window.addEventListener("load", enforceLandscape);
-        window.addEventListener("resize", enforceLandscape);
-        window.addEventListener("orientationchange", enforceLandscape);
-
-        // Пытаемся заблокировать ориентацию (работает только на мобильных)
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            if (screen.orientation?.lock) {
-                screen.orientation.lock("landscape").catch(() => {
-                    console.log("Браузер не поддерживает блокировку ориентации");
-                });
-            }
-        }
-    </script>
 </head>
 <body>
     <div id="unity-container" style="position: absolute; width: 100%; height: 100%; left: 0%; top: 0%;">
