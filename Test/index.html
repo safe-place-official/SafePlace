@@ -17,7 +17,7 @@
             height: 100vh;
         }
 
-        #game-header, #game-footer {
+        #game-footer {
             background: linear-gradient(90deg, #3E1A88, #702BFF);
             padding: 10px 20px;
             display: flex;
@@ -26,13 +26,49 @@
             z-index: 10;
             flex-shrink: 0;
         }
+        #game-header {
+            background: #000000;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 10;
+            flex-shrink: 0;
+            border: 0;
+            border-left: 2px solid #702BFF;
+            border-right: 2px solid #702BFF;
+            border-bottom: 2px solid #702BFF;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
 
-            #game-header .title {
-                flex: 1;
-                text-align: center;
-                font-weight: bold;
-                color: #FFFFFF;
-            }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px; /* отступ между логотипом и надписью */
+        }
+
+        .brand-name {
+            font-weight: bold;
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
+        #game-header .logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        #game-header .title {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+            font-size: 18px;
+            color: #FFFFFF;
+        }
+
 
         #unity-container {
             flex: 1;
@@ -64,11 +100,15 @@
 </head>
 <body>
     <!-- Верхняя панель -->
+
     <header id="game-header">
-        <div class="logo">SafePlace</div>
+        <div class="brand">
+            <img src="Group 85.png" alt="MainLogo" class="logo">
+        </div>
         <div class="title">Durov, Jailbreak</div>
         <button class="btn open-page" onclick="window.open('https://example.com/gamepage','_blank')">Открыть</button>
     </header>
+
 
     <!-- Канвас Unity -->
     <div id="unity-container">
@@ -84,7 +124,7 @@
 
     <!-- Нижняя панель -->
     <footer id="game-footer">
-        <span>© SafePlace Platform</span>
+        <span>Created by SafePlace</span>
         <button class="btn fullscreen-btn" onclick="toggleFullscreen()">⛶ Полный экран</button>
     </footer>
 
