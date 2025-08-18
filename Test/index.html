@@ -1,15 +1,3 @@
-<!--                                                                                                                                                                                           -->
-<!--                                          | $$                    | $$      | $$                        / $$$$$$            / $$$$$$        | $$$$$$$ | $$                                 -->
-<!--                                          | $$                    | $$      | $$                       / $$__  $$          /$$__  $$        | $$__  $$| $$                                 -->
-<!--  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$      | $$$$$$$  /$$   /$$      | $$  \__/  /$$$$$$ | $$  \__//$$$$$$ | $$  \ $$| $$  /$$$$$$   /$$$$$$$  /$$$$$$    -->
-<!-- /$$_____/ /$$__  $$ /$$__  $$ |____  $$|_  $$_/   /$$__  $$ /$$__  $$      | $$__  $$| $$  | $$      |  $$$$$$  |____  $$| $$$$   /$$__  $$| $$$$$$$/| $$ |____  $$ /$$_____/ /$$__  $$   -->
-<!--| $$      | $$  \__/| $$$$$$$$  /$$$$$$$  | $$    | $$$$$$$$| $$  | $$      | $$  \ $$| $$  | $$       \____  $$  /$$$$$$$| $$_/  | $$$$$$$$| $$____/ | $$  /$$$$$$$| $$      | $$$$$$$$   -->
-<!--| $$      | $$      | $$_____/ /$$__  $$  | $$ /$$| $$_____/| $$  | $$      | $$  | $$| $$  | $$       /$$  \ $$ /$$__  $$| $$    | $$_____/| $$      | $$ /$$__  $$| $$      | $$_____/   -->
-<!--|  $$$$$$$| $$      |  $$$$$$$|  $$$$$$$  |  $$$$/|  $$$$$$$|  $$$$$$$      | $$$$$$$/|  $$$$$$$      |  $$$$$$/|  $$$$$$$| $$    |  $$$$$$$| $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$   -->
-<!-- \_______/|__/       \_______/ \_______/   \___/   \_______/ \_______/      |_______/  \____  $$       \______/  \_______/|__/     \_______/|__/      |__/ \_______/ \_______/ \_______/   -->
-<!--                                                                                            | $$                                                                                           -->
-<!--                                                                                      |  $$$$$$/                                                                                           -->
-<!--                                                                                       \______/                                                                                            -->
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
@@ -21,33 +9,35 @@
     <style>
         body {
             margin: 0;
-            background: #000;
-            color: white;
+            background: #000000;
+            color: #FFFFFF;
             font-family: sans-serif;
             display: flex;
             flex-direction: column;
             height: 100vh;
-            overflow: hidden;
         }
 
         #game-header, #game-footer {
-            background: rgba(20,20,20,0.9);
-            padding: 10px;
+            background: linear-gradient(90deg, #3E1A88, #702BFF);
+            padding: 10px 20px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             z-index: 10;
+            flex-shrink: 0;
         }
 
             #game-header .title {
                 flex: 1;
                 text-align: center;
                 font-weight: bold;
+                color: #FFFFFF;
             }
 
         #unity-container {
             flex: 1;
             position: relative;
+            min-height: 0; /* нужно, чтобы flex не ломался */
         }
 
         #unity-canvas {
@@ -57,17 +47,18 @@
         }
 
         .btn {
-            background: #444;
+            background: #702BFF;
             border: none;
-            color: white;
+            color: #FFFFFF;
             padding: 6px 12px;
             cursor: pointer;
             border-radius: 6px;
+            font-weight: bold;
             transition: background 0.2s;
         }
 
             .btn:hover {
-                background: #666;
+                background: #3E1A88;
             }
     </style>
 </head>
