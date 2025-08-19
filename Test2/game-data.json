@@ -1,14 +1,14 @@
 ﻿{
   "title": "PEAK",
   "description": "PEAK — динамичный экшен с упором на реакцию и тайминг. Исследуй уровни‑вершины, собирай усиления и сражайся с боссами. Поддерживается прогресс‑синхронизация между браузером и десктопом. Игру можно проходить офлайн после первого запуска.",
-  "logo": "./data/logo.png",
+  "logo": "5.webp",
   "background": "./data/background.jpg",
   "releaseDate": "16 июня 2025",
   "developer": "Team PEAK",
   "platforms": [ "Web", "Windows" ],
   "orientation": "Альбомная",
   "localization": [ "RU", "EN" ],
-  "rating": 4.6,
+  "rating": 4,
   "tags": [ "Экшн", "Платформер", "Singleplayer", "Контроллер", "60 FPS" ],
   "screenshots": [
     "./data/shot-1.jpg",
@@ -26,11 +26,6 @@
       "name": "Яндекс Игры",
       "icon": "fa-solid fa-y",
       "url": "https://yandex.ru/games"
-    },
-    {
-      "name": "EGS",
-      "icon": "fa-brands fa-app-store-ios",
-      "url": "https://www.epicgames.com/store"
     }
   ],
   "requirements": [ "CPU: 2‑4 ядра", "RAM: 4 ГБ", "GPU: интегрированная", "WebGL 2" ],
