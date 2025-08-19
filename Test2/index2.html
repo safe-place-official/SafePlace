@@ -1,0 +1,997 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SafeGames</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Основные цвета */
+        :root {
+            --white: #FFFFFF;
+            --purple: #702BFF;
+            --dark-purple: #3E1A88;
+            --black: #000000;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, var(--purple), var(--dark-purple));
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            border-radius: 20%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(112, 43, 255, 0.3);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+            .toggle-btn i {
+                font-size: 18px;
+                transition: all 0.3s ease;
+            }
+
+            .toggle-btn::before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, var(--dark-purple), var(--purple));
+                opacity: 0;
+                transition: opacity 0.4s ease;
+                z-index: -1;
+            }
+
+            .toggle-btn:hover {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 20px rgba(112, 43, 255, 0.5);
+            }
+
+                .toggle-btn:hover::before {
+                    opacity: 1;
+                }
+
+            .toggle-btn:active {
+                transform: translateY(1px) scale(0.98);
+                box-shadow: 0 2px 8px rgba(112, 43, 255, 0.4);
+            }
+
+            /* Анимация иконки при нажатии */
+            .toggle-btn.clicked i {
+                animation: spin 0.4s ease;
+            }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        body {
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+            background-color: var(--black);
+            color: var(--white);
+            font-family: 'Rubik', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            overflow-x: hidden;
+        }
+
+        /* Хедер */
+        header {
+            display: flex;
+            align-items: center;
+            background-color: var(--black);
+            padding: 10px 20px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border: 0;
+            border-left: 2px solid #702BFF;
+            border-right: 2px solid #702BFF;
+            border-bottom: 2px solid #702BFF;
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+        }
+
+        .logo {
+            font-size: 24px;
+            color: var(--purple);
+        }
+
+        /* Сайдбар */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 52px;
+            width: 280px;
+            bottom: 5px;
+            background-color: var(--dark-purple);
+            padding: 15px 0;
+            transition: all 0.3s ease;
+            overflow-y: auto;
+            z-index: 999;
+            box-shadow: 4px 0 15px rgba(112, 43, 255, 0.5);
+            border-bottom-right-radius: 10px;
+            overflow: auto;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 250px;
+                transform: translateX(-100%);
+            }
+
+                .sidebar:not(.collapsed) {
+                    transform: translateX(0);
+                }
+
+            .main-content {
+                margin-left: 0 !important;
+            }
+        }
+
+        .sidebar.collapsed {
+            left: -280px;
+        }
+
+        .sidebar button {
+            display: flex;
+            align-items: center;
+            width: calc(100% - 20px);
+            padding: 12px 20px;
+            margin: 0 10px 5px;
+            background-color: var(--black);
+            border: none;
+            color: var(--white);
+            font-size: 16px;
+            font-family: 'Rubik', sans-serif;
+            font-weight: 900;
+            font-style: italic;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            border-radius: 0 0 8px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .sidebar button::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 4px;
+                height: 100%;
+                background: var(--white);
+                transform: scaleY(0);
+                transform-origin: top;
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar button:hover {
+                background-color: var(--black);
+                transform: translateX(5px);
+                box-shadow: 0 0 15px rgba(112, 43, 255, 0.7);
+            }
+
+                .sidebar button:hover::before {
+                    transform: scaleY(1);
+                }
+
+            .sidebar button span {
+                margin-left: 10px;
+            }
+
+            .sidebar button i {
+                font-size: 18px;
+                transition: all 0.3s ease;
+            }
+
+            .sidebar button:hover i {
+                transform: scale(1.2);
+                color: var(--purple);
+            }
+
+        .toggle-btn {
+            background-color: var(--purple);
+            border: none;
+            color: var(--white);
+            cursor: pointer;
+            padding: 5px;
+            margin-right: 10px;
+        }
+
+        /* Основной контент */
+        .main-content {
+            margin-left: 300px;
+            padding: 60px 20px 20px;
+            transition: margin-left 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 60px 10px 10px;
+            }
+        }
+
+        .main-content.collapsed {
+            margin-left: 20px; /* Когда сайдбар свернут */
+        }
+
+        .featured-container {
+            position: relative;
+            width: 90%;
+            margin: 20px auto 40px;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            .featured-container {
+                width: 100%;
+                margin: 10px auto 20px;
+            }
+
+            .carousel-nav {
+                width: 30px;
+                height: 30px;
+                font-size: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+                .carousel-nav.prev {
+                    left: 5px;
+                }
+
+                .carousel-nav.next {
+                    right: 5px;
+                }
+        }
+
+        .carousel-nav {
+            background: rgba(62, 26, 136, 0.7);
+            color: white;
+            border: none;
+            font-size: 24px;
+            padding: 10px 15px;
+            cursor: pointer;
+            z-index: 10;
+            border-radius: 5px;
+            margin: 0 10px;
+        }
+
+            .carousel-nav:hover {
+                background: rgba(112, 43, 255, 0.9);
+            }
+
+
+        .featured {
+            width: 100%; /* уже есть */
+            max-width: 2000px; /* для центровки и ограничения ширины */
+            aspect-ratio: 5 / 3; /* такой же, как у карусельной обложки */
+            margin: 0 auto;
+            position: relative;
+            background-color: var(--black);
+            border: 2px solid var(--purple);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 10; /* Убедитесь, что индикаторы поверх слайдов */
+            opacity: 1 !important; /* Переопределите возможные скрытия */
+            pointer-events: auto; /* Разрешить взаимодействие */
+        }
+
+
+        .carousel-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0; /* Начальная прозрачность */
+            transition: all 1s cubic-bezier(0.5, 0, 0.1, 1); /* Анимация */
+            z-index: 0;
+            /* Небольшое уменьшение */
+            filter: brightness(0.7); /* Затемнение */
+        }
+
+            .carousel-slide.active {
+                opacity: 1; /* Полная видимость */
+                /* Нормальный размер */
+                filter: brightness(1); /* Полная яркость */
+            }
+
+            .carousel-slide.active {
+                opacity: 1;
+                z-index: 2; /* активный всегда сверху */
+                pointer-events: auto; /* только он интерактивный */
+            }
+
+            .carousel-slide .featured-cover {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                position: relative;
+                transition: transform 0.5s ease-out;
+                will-change: transform;
+                background-size: cover;
+                background-position: center;
+            }
+
+            .carousel-slide .overlay {
+                position: absolute;
+                top: 0;
+                left: 0; /* темная зона слева */
+                width: 50%; /* можно увеличить до 60%, если нужно */
+                height: 100%;
+                background: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0));
+                /* черная зона до 70% overlay, потом плавно исчезает вправо */
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start; /* текст слева */
+                padding: 40px;
+                box-sizing: border-box;
+            }
+
+            .carousel-slide .featured-info {
+                color: var(--white);
+                max-width: 90%;
+            }
+
+
+            .carousel-slide .featured-title {
+                font-size: clamp(28px, 4vw, 48px);
+                margin-bottom: 15px;
+            }
+
+            .carousel-slide .featured-desc {
+                font-size: clamp(14px, 2.5vw, 20px);
+                margin-bottom: 15px;
+            }
+
+        .play-btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+            background: linear-gradient(90deg, #A36BFF, #702BFF); /* анимация градиента */
+        }
+
+        .featured-desc {
+            font-size: clamp(12px, 2vw, 16px);
+        }
+
+        .featured-container {
+            position: relative;
+            width: 90%;
+            margin: 20px auto 40px;
+            display: flex;
+            align-items: center;
+        }
+
+        .carousel-nav {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 50px;
+            font-size: 32px;
+            background-color: rgba(62, 26, 136, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 10px;
+            color: var(--white);
+            transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.2s ease;
+        }
+
+            .carousel-nav.prev {
+                left: -80px;
+            }
+
+            .carousel-nav.next {
+                right: -80px;
+            }
+
+            /* Наведение — фирменный градиент и подсветка */
+            .carousel-nav:hover {
+                background: linear-gradient(135deg, var(--purple), var(--dark-purple));
+                box-shadow: 0 0 20px var(--purple), 0 0 5px rgba(112, 43, 255, 0.6);
+            }
+
+            /* Эффект при нажатии */
+            .carousel-nav:active {
+                transform: scale(0.95);
+                box-shadow: 0 0 10px var(--purple);
+            }
+
+
+        .carousel-slide .play-btn {
+            font-size: clamp(16px, 2vw, 24px);
+            padding: 10px 25px;
+            background-color: var(--purple);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+
+        .carousel-indicators {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            border: 2px solid transparent;
+        }
+
+            .indicator:hover {
+                background: rgba(255, 255, 255, 0.7);
+                transform: scale(1.2);
+            }
+
+            .indicator.active {
+                background: var(--purple);
+            }
+
+        /* Сетка игр */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            grid-auto-flow: dense;
+        }
+
+        @media (max-width: 768px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+                gap: 10px;
+            }
+
+            .game-title {
+                padding: 8px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+        }
+
+        .game-card {
+            background: linear-gradient(135deg, var(--dark-purple), #3E1A88);
+            border-radius: 12px;
+            overflow: hidden;
+            cursor: pointer;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            border: 1px solid rgba(112, 43, 255, 0.2);
+        }
+
+            .game-card:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: linear-gradient(135deg, rgba(112, 43, 255, 0.3), transparent);
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .game-card:hover {
+                transform: translateY(-8px) scale(1.02);
+                box-shadow: 0 12px 28px rgba(112, 43, 255, 0.4);
+            }
+
+                .game-card:hover:before {
+                    opacity: 1;
+                }
+
+            .game-card:active {
+                transform: translateY(-2px);
+            }
+
+        .featured {
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform-style: preserve-3d;
+        }
+
+            .featured:hover {
+                box-shadow: 0 0 35px rgba(112, 43, 255, 0.8);
+                transform: scale(1.005)
+            }
+
+        .play-btn {
+            font-family: inherit;
+            font-weight: 900;
+            font-style: italic;
+            font-size: clamp(18px, 2.5vw, 24px);
+            padding: 12px 30px;
+            background: linear-gradient(135deg, var(--purple), #A36BFF);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(112, 43, 255, 0.5);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+            .play-btn:before {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(135deg, #A36BFF, var(--purple));
+                z-index: -1;
+                opacity: 0;
+                transition: opacity 0.4s ease;
+            }
+
+            .play-btn:hover {
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 25px rgba(112, 43, 255, 0.7);
+            }
+
+                .play-btn:hover:before {
+                    opacity: 1;
+                }
+
+            .play-btn:active {
+                transform: translateY(1px) scale(0.98);
+            }
+
+        .game-card.vertical {
+            grid-row: span 2;
+        }
+
+        .game-cover {
+            width: 100%;
+            background-color: #ccc; /* Плейсхолдер */
+            flex-grow: 1; /* Чтобы обложка заполняла доступное пространство */
+        }
+
+            .game-cover.horizontal,
+            .featured-cover {
+                aspect-ratio: 5 / 3; /* новое красивое широкое соотношение */
+            }
+
+            /* Вертикальная обложка */
+            .game-cover.vertical {
+                aspect-ratio: 5 / 3; /* новое красивое вертикальное */
+            }
+
+        .game-title {
+            padding: 15px;
+            font-size: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            margin-top: -4px;
+            transition: all 0.3s ease;
+        }
+
+        .game-card:hover .game-title {
+            background: rgba(0, 0, 0, 0.7);
+            color: var(--white);
+        }
+
+        .logo {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        /* Для рандомных игр - используем JS для генерации */
+        /* 📱 Мобильная версия карусели */
+        @media (max-width: 768px) {
+            .featured {
+                width: 100%;
+                max-width: 100%;
+                aspect-ratio: 5 / 3; /* сохраняем пропорции */
+                border-radius: 8px;
+            }
+
+            .carousel-slide .overlay {
+                width: 40%; /* меньше тёмная зона */
+                padding: 15px; /* компактнее отступы */
+            }
+
+            .carousel-slide .featured-title {
+                font-size: clamp(18px, 4vw, 24px);
+            }
+
+            .carousel-slide .featured-desc {
+                font-size: clamp(12px, 3vw, 14px);
+            }
+
+            .carousel-slide .play-btn {
+                font-size: 14px;
+                padding: 6px 14px;
+                border-radius: 8px;
+            }
+
+            .carousel-nav {
+                display: none !important;
+                pointer-events: none;
+            }
+
+
+                .carousel-nav.prev {
+                    left: 5px;
+                }
+
+                .carousel-nav.next {
+                    right: 5px;
+                }
+        }
+
+        @media (max-width: 480px) {
+            .carousel-slide .overlay {
+                width: 50%; /* чуть больше overlay для текста на очень узких экранах */
+                padding: 10px;
+            }
+
+            .carousel-slide .featured-title {
+                font-size: 16px;
+            }
+
+            .carousel-slide .featured-desc {
+                font-size: 12px;
+            }
+
+            .carousel-slide .play-btn {
+                font-size: 12px;
+                padding: 5px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <button class="toggle-btn" onclick="toggleSidebar()" title="Меню">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img src="Group 84.png" alt="SafeGames" class="logo">
+    </header>
+
+    <nav class="sidebar">
+        <button><i class="fas fa-home"></i><span>Главная</span></button>
+        <button><i class="fas fa-code"></i><span>SafePlace Dev</span></button>
+        <button><i class="fas fa-star"></i><span>Новинки</span></button>
+        <button><i class="fas fa-fire"></i><span>Популярные</span></button>
+        <button><i class="fas fa-car"></i><span>Симуляторы</span></button>
+        <button><i class="fas fa-gamepad"></i><span>Аркады</span></button>
+        <button><i class="fas fa-ghost"></i><span>Хоррор</span></button>
+        <button><i class="fas fa-chess"></i><span>Стратегии</span></button>
+        <button><i class="fas fa-shield-alt"></i><span>Выживание</span></button>
+        <button><i class="fas fa-puzzle-piece"></i><span>Головоломки</span></button>
+        <button><i class="fas fa-book"></i><span>Новеллы</span></button>
+        <button><i class="fas fa-map"></i><span>Метроидвании</span></button>
+        <button><i class="fas fa-dragon"></i><span>RPG</span></button>
+        <button><i class="fas fa-running"></i><span>Экшн</span></button>
+        <button><i class="fas fa-mountain"></i><span>Приключения</span></button>
+        <button><i class="fas fa-football-ball"></i><span>Спортивные</span></button>
+        <div style="text-align: center; padding: 20px; color: var(--white); font-size: 12px; margin-top: auto;">
+            SafeGames<br>
+            Все права защищены © 2025
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <section class="featured-container">
+            <button class="carousel-nav prev">&#10094;</button>
+            <section class="featured">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <div class="featured-cover" style="background-image: url('image 1.png'); background-size: cover; background-position: center;"></div>
+                        <div class="overlay">
+                            <div class="featured-info">
+                                <div class="featured-title">Cyberpunk 2077</div>
+                                <div class="featured-desc">Дата выхода: 10 декабря 2020 | Разработчик: CD Projekt RED</div>
+                                <button class="play-btn">Играть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="featured-cover" style="background-image: url('maxresdefault 1.png'); background-size: cover; background-position: center;"></div>
+                        <div class="overlay">
+                            <div class="featured-info">
+                                <div class="featured-title">The Witcher 3</div>
+                                <div class="featured-desc">Дата выхода: 19 мая 2015 | Разработчик: CD Projekt RED</div>
+                                <button class="play-btn">Играть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="featured-cover" style="background-image: url('image 5.png'); background-size: cover; background-position: center;"></div>
+                        <div class="overlay">
+                            <div class="featured-info">
+                                <div class="featured-title">PEAK</div>
+                                <div class="featured-desc">Дата выхода: 16 июня 2025  | Разработчик: Team PEAK</div>
+                                <button class="play-btn">Играть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="featured-cover" style="background-image: url('Group 87.png'); background-size: cover; background-position: center;"></div>
+                        <div class="overlay">
+                            <div class="featured-info">
+                                <div class="featured-title">Atomic Heart</div>
+                                <div class="featured-desc">Дата выхода: 21 февраля 2023 | Разработчик: MundFish</div>
+                                <button class="play-btn">Играть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-slide">
+                        <div class="featured-cover" style="background-image: url('header (7) 3.png'); background-size: cover; background-position: center;"></div>
+                        <div class="overlay">
+                            <div class="featured-info">
+                                <div class="featured-title">Killing Floor III</div>
+                                <div class="featured-desc">Дата выхода: 24 июля 2025 | Разработчик: Tripwire Interactive</div>
+                                <button class="play-btn">Играть</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-indicators">
+                        <div class="indicator active" data-slide="0"></div>
+                        <div class="indicator" data-slide="1"></div>
+                        <div class="indicator" data-slide="2"></div>
+                        <div class="indicator" data-slide="3"></div>
+                        <div class="indicator" data-slide="4"></div>
+                    </div>
+                </div>
+            </section>
+            <button class="carousel-nav next">&#10095;</button>
+        </section>
+
+        <section class="games-grid" id="games-grid">
+            <!-- Игры будут добавлены JS -->
+        </section>
+    </main>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const sidebar = document.querySelector(".sidebar");
+            const mainContent = document.querySelector(".main-content");
+            const toggleBtn = document.querySelector(".toggle-btn i");
+
+            // Автозакрытие меню на мобильных
+            if (window.innerWidth <= 768) {
+                sidebar.classList.add("collapsed");
+                mainContent.classList.add("collapsed");
+                toggleBtn.classList.remove("fa-chevron-left");
+                toggleBtn.classList.add("fa-chevron-right");
+            }
+        });
+
+        // Функция сворачивания/разворачивания сайдбара
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const main = document.querySelector('.main-content');
+            sidebar.classList.toggle('collapsed');
+            main.classList.toggle('collapsed');
+        }
+
+        // Пример рандомных игр (хардкодим список названий)
+        const gameTitles = [
+            'Ultimate Fishing Simulator',
+            'ACHILLES Legends Untold',
+            'The Messenger',
+            'Detroit: Become Human',
+            'Warhammer Space Marine',
+            'Steampunk Tower',
+            'Mafia III',
+            'Broken Arrow',
+            'Atomic Heart',
+            'Смута',
+            'Wuchang Fallen Feathers',
+            'Podvodsk',
+            'Teardown',
+            'ЯRKO Данжон',
+            'Terminator: Dark Fate',
+            'Killing Floor III',
+            'Abiotic Factor',
+            'Лихо Огненное'
+        ];
+
+        // Функция для добавления игр в грид
+        function addGames(num) {
+            const grid = document.getElementById('games-grid');
+            for (let i = 0; i < num; i++) {
+                const randomTitle = gameTitles[Math.floor(Math.random() * gameTitles.length)];
+                const randomCoverType = Math.random() < 0.5 ? 'horizontal' : 'vertical';
+                const card = document.createElement('div');
+                card.classList.add('game-card', randomCoverType);
+                const cover = document.createElement('div');
+                cover.classList.add('game-cover', randomCoverType);
+                const title = document.createElement('div');
+                title.classList.add('game-title');
+                title.textContent = randomTitle;
+                card.appendChild(cover);
+                card.appendChild(title);
+                grid.appendChild(card);
+            }
+        }
+
+        // Начальная загрузка (больше для предзагрузки)
+        addGames(30);
+
+        // Бесконечный скролл (добавляем больше при скролле вниз, с запасом)
+        window.addEventListener('scroll', () => {
+            if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 500) { // Триггер пораньше
+                addGames(20); // Добавляем больше за раз для плавности
+            }
+        });
+
+        // Enhanced Carousel functionality with parallax and touch support
+        let currentSlide = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        const slides = document.querySelectorAll('.carousel-slide');
+        const indicators = document.querySelectorAll('.indicator');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            // Remove active class from all slides and indicators
+            slides.forEach(slide => slide.classList.remove('active'));
+            indicators.forEach(indicator => indicator.classList.remove('active'));
+
+            // Add active class to current slide and indicator
+            slides[index].classList.add('active');
+            indicators[index].classList.add('active');
+
+            currentSlide = index;
+        }
+
+        function nextSlide() {
+            let nextIndex = currentSlide + 1;
+            if (nextIndex >= totalSlides) {
+                nextIndex = 0;
+            }
+            showSlide(nextIndex);
+        }
+
+        function prevSlide() {
+            let prevIndex = currentSlide - 1;
+            if (prevIndex < 0) {
+                prevIndex = totalSlides - 1;
+            }
+            showSlide(prevIndex);
+        }
+
+        // Auto slide change every 10 seconds
+        let slideInterval = setInterval(nextSlide, 10000);
+
+        // Touch support for carousel
+        const carousel = document.querySelector('.carousel-container');
+        carousel.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            clearInterval(slideInterval);
+        }, { passive: true });
+
+        carousel.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            slideInterval = setInterval(nextSlide, 10000);
+        }, { passive: true });
+
+        function handleSwipe() {
+            const threshold = 50;
+            if (touchStartX - touchEndX > threshold) {
+                nextSlide();
+            } else if (touchEndX - touchStartX > threshold) {
+                prevSlide();
+            }
+        }
+
+        // Navigation buttons
+        document.querySelector('.carousel-nav.next').addEventListener('click', () => {
+            clearInterval(slideInterval);
+            nextSlide();
+            slideInterval = setInterval(nextSlide, 10000);
+        });
+
+        document.querySelector('.carousel-nav.prev').addEventListener('click', () => {
+            clearInterval(slideInterval);
+            prevSlide();
+            slideInterval = setInterval(nextSlide, 10000);
+        });
+
+        // Indicator clicks
+        indicators.forEach((indicator, index) => {
+            indicator.addEventListener('click', () => {
+                clearInterval(slideInterval);
+                showSlide(index);
+                slideInterval = setInterval(nextSlide, 10000);
+            });
+        });
+
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const main = document.querySelector('.main-content');
+            const toggleBtn = document.querySelector('.toggle-btn');
+
+            // Анимация кнопки
+            toggleBtn.classList.add('clicked');
+            setTimeout(() => {
+                toggleBtn.classList.remove('clicked');
+            }, 400);
+
+            // Переключение сайдбара
+            sidebar.classList.toggle('collapsed');
+            main.classList.toggle('collapsed');
+
+            // Смена иконки
+            const icon = toggleBtn.querySelector('i');
+            if (sidebar.classList.contains('collapsed')) {
+                icon.classList.remove('fa-chevron-left');
+                icon.classList.add('fa-chevron-right');
+            } else {
+                icon.classList.remove('fa-chevron-right');
+                icon.classList.add('fa-chevron-left');
+            }
+        }
+    </script>
+</body>
+</html>
