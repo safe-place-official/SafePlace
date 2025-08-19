@@ -216,10 +216,12 @@
 
       <h2><i class="fa-solid fa-images"></i> Скриншоты</h2>
       <div class="gallery">
-        <div class="shot"></div>
-        <div class="shot"></div>
-        <div class="shot"></div>
-        <div class="shot"></div>
+          <div class="shot"></div>
+          <div class="shot"></div>
+          <div class="shot"></div>
+          <div class="shot"></div>
+          <div class="shot"></div>
+          <div class="shot"></div>
       </div>
     </section>
 
@@ -255,9 +257,9 @@
 
       <h2><i class="fa-solid fa-circle-question"></i> Справка</h2>
       <div class="chips">
-        <span class="chip">Сохранения: Авто / Облако</span>
-        <span class="chip">Игровое время: 6–10 ч</span>
-        <span class="chip">Версия: 1.0.0</span>
+          <span class="chip">Сохранения: Авто / Облако</span>
+          <span class="chip">Игровое время: 6–10 ч</span>
+          <span class="chip">Версия: 1.0.0</span>
       </div>
     </aside>
   </main>
@@ -306,42 +308,86 @@
       }
     });
 	
-	fetch('info.txt')
-  .then(res => res.text())
-  .then(text => {
-    const lines = text.split('\n');
-    const gameData = {};
+      async function loadGameData() {
+          try {
+              const response = await fetch('./game-data.json');
+              if (!response.ok) throw new Error('Не удалось загрузить данные');
 
-    lines.forEach(line => {
-      const [key, ...rest] = line.split(':');
-      if (!key) return;
-      const value = rest.join(':').trim();
-      if (key === 'platforms' || key === 'localization') {
-        gameData[key] = value.split(',').map(s => s.trim());
-      } else {
-        gameData[key] = value;
+              const gameData = await response.json();
+
+              // Логотип и фон
+              document.querySelector('.game-logo').style.backgroundImage = `url(${gameData.logo})`;
+              document.querySelector('.hero__bg').style.backgroundImage = `url(${gameData.background})`;
+
+              // Текст
+              document.querySelector('.game-title').textContent = gameData.title;
+              document.querySelector('.desc').textContent = gameData.description;
+
+              // Meta-бейджи
+              const badges = document.querySelectorAll('.meta-row .badge');
+              badges[0].innerHTML = `<i class="fa-solid fa-calendar-day"></i> Релиз: ${gameData.releaseDate}`;
+              badges[1].innerHTML = `<i class="fa-solid fa-user-gear"></i> Разработчик: ${gameData.developer}`;
+              badges[2].innerHTML = `<i class="fa-solid fa-desktop"></i> Платформы: ${gameData.platforms.join(', ')}`;
+              badges[3].innerHTML = `<i class="fa-solid fa-mobile-screen"></i> Ориентация: ${gameData.orientation}`;
+              badges[4].innerHTML = `<i class="fa-solid fa-language"></i> Локализация: ${gameData.localization.join(' / ')}`;
+              badges[5].innerHTML = `<i class="fa-solid fa-star"></i> Рейтинг: <span class="stars">${'★'.repeat(Math.floor(gameData.rating))}${'☆'.repeat(5 - Math.floor(gameData.rating))}</span> ${gameData.rating}`;
+
+              // Теги
+              const chipsContainer = document.querySelector('.chips');
+              chipsContainer.innerHTML = '';
+              gameData.tags.forEach(tag => {
+                  const span = document.createElement('span');
+                  span.className = 'chip';
+                  span.textContent = tag;
+                  chipsContainer.appendChild(span);
+              });
+
+              // Скриншоты
+              const shots = document.querySelectorAll('.gallery .shot');
+              shots.forEach((shot, i) => {
+                  if (gameData.screenshots[i]) shot.style.backgroundImage = `url(${gameData.screenshots[i]})`;
+              });
+
+              // Магазины
+              const storesContainer = document.querySelector('.stores');
+              storesContainer.innerHTML = '';
+              gameData.stores.forEach(store => {
+                  const a = document.createElement('a');
+                  a.className = 'store';
+                  a.href = store.url;
+                  a.target = '_blank';
+                  a.rel = 'noopener';
+                  a.innerHTML = `<i class="${store.icon}"></i><span>${store.name}</span>`;
+                  storesContainer.appendChild(a);
+              });
+
+              // Требования
+              const requirementsContainer = document.querySelectorAll('.card .chips')[1];
+              requirementsContainer.innerHTML = '';
+              gameData.requirements.forEach(req => {
+                  const span = document.createElement('span');
+                  span.className = 'chip';
+                  span.textContent = req;
+                  requirementsContainer.appendChild(span);
+              });
+
+              // Справка / support
+              const supportContainer = document.querySelectorAll('.card .chips')[2];
+              supportContainer.innerHTML = '';
+              gameData.support.forEach(info => {
+                  const span = document.createElement('span');
+                  span.className = 'chip';
+                  span.textContent = info;
+                  supportContainer.appendChild(span);
+              });
+
+          } catch (err) {
+              console.error('Ошибка загрузки данных:', err);
+          }
       }
-    });
 
-    // Подставляем картинки
-    document.querySelector('.game-logo').style.backgroundImage = `url(${gameData.logo})`;
-    document.querySelector('.hero__bg').style.backgroundImage = `url(${gameData.background})`;
-
-    // Подставляем текстовые данные
-    document.querySelector('.game-title').textContent = gameData.title;
-    document.querySelector('.desc').textContent = gameData.description;
-
-    const badges = document.querySelectorAll('.meta-row .badge');
-    badges[0].innerHTML = `<i class="fa-solid fa-calendar-day"></i> Релиз: ${gameData.releaseDate}`;
-    badges[1].innerHTML = `<i class="fa-solid fa-user-gear"></i> Разработчик: ${gameData.developer}`;
-    badges[2].innerHTML = `<i class="fa-solid fa-desktop"></i> Платформы: ${gameData.platforms.join(', ')}`;
-    badges[3].innerHTML = `<i class="fa-solid fa-mobile-screen"></i> Ориентация: ${gameData.orientation}`;
-    badges[4].innerHTML = `<i class="fa-solid fa-language"></i> Локализация: ${gameData.localization.join(' / ')}`;
-    badges[5].innerHTML = `<i class="fa-solid fa-star"></i> Рейтинг: <span class="stars" aria-label="Рейтинг ${gameData.rating} из 5">
-      ${'★'.repeat(Math.floor(gameData.rating))}${'☆'.repeat(5 - Math.floor(gameData.rating))}
-    </span> ${gameData.rating}`;
-  })
-  .catch(err => console.log('Ошибка загрузки игры:', err));
+      // Запуск
+      loadGameData();
 
   </script>
 </body>
