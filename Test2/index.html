@@ -310,7 +310,7 @@
 	
       async function loadGameData() {
           try {
-              const response = await fetch('./game-data.json');
+              const response = await fetch('game-data.json');
               if (!response.ok) throw new Error('Не удалось загрузить данные');
 
               const gameData = await response.json();
