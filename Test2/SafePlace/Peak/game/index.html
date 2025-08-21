@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en-us">
 <head>
     <meta charset="utf-8">
@@ -114,25 +114,16 @@
             color: #FFFFFF;
         }
 
-
-        #unity-container {
-            flex: 1;
-            position: relative;
-            min-height: 0; /* нужно, чтобы flex не ломался */
-        }
-
-        #unity-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
         .text-link {
             text-decoration: none; /* убирает подчеркивание */
             color: inherit; /* наследует цвет родителя */
             cursor: pointer; /* меняет курсор на руку при наведении */
         }
-
+        #unity-frame {
+            flex: 1;
+            border: none;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -153,91 +144,21 @@
         </button>
     </header>
 
+    <iframe id="unity-frame" src="game.html"></iframe>
 
-    <!-- Канвас Unity -->
-    <div id="unity-container">
-        <canvas id="unity-canvas"></canvas>
-        <div id="unity-loading-bar">
-            <div id="unity-logo"></div>
-            <div id="unity-progress-bar-empty">
-                <div id="unity-progress-bar-full"></div>
-            </div>
-        </div>
-        <div id="unity-warning"> </div>
-    </div>
 
     <script>
-        var canvas = document.querySelector("#unity-canvas");
-
-        function unityShowBanner(msg, type) {
-            var warningBanner = document.querySelector("#unity-warning");
-            function updateBannerVisibility() {
-                warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
-            }
-            var div = document.createElement('div');
-            div.innerHTML = msg;
-            warningBanner.appendChild(div);
-            if (type == 'error') div.style = 'background: red; padding: 10px;';
-            else {
-                if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
-                setTimeout(function () {
-                    warningBanner.removeChild(div);
-                    updateBannerVisibility();
-                }, 5000);
-            }
-            updateBannerVisibility();
-        }
-
-        var buildUrl = "Build";
-        var loaderUrl = buildUrl + "/DurovJailbreak.loader.js";
-        var config = {
-            arguments: [],
-            dataUrl: buildUrl + "/DurovJailbreak.data",
-            frameworkUrl: buildUrl + "/DurovJailbreak.framework.js",
-            codeUrl: buildUrl + "/DurovJailbreak.wasm",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "SafePlace",
-            productName: "Durov, Jailbreak",
-            productVersion: "1.2",
-            showBanner: unityShowBanner,
-        };
-
-        if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-            var meta = document.createElement('meta');
-            meta.name = 'viewport';
-            meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-            document.getElementsByTagName('head')[0].appendChild(meta);
-            document.querySelector("#unity-container").className = "unity-mobile";
-            canvas.className = "unity-mobile";
-        } else {
-            canvas.style.width = "100%";
-            canvas.style.height = "100%";
-        }
-
-        document.querySelector("#unity-loading-bar").style.display = "block";
-
-        var script = document.createElement("script");
-        script.src = loaderUrl;
-        script.onload = () => {
-            createUnityInstance(canvas, config, (progress) => {
-                document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-            }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-            }).catch((message) => {
-                alert(message);
-            });
-        };
-        document.body.appendChild(script);
-
-        // Функция разворота в полный экран
         function toggleFullscreen() {
-            const container = document.getElementById("unity-container");
+            const iframe = document.getElementById("unity-frame");
             if (!document.fullscreenElement) {
-                container.requestFullscreen().catch(err => console.log(err));
+                iframe.requestFullscreen()
+                    .then(() => iframe.contentWindow.focus()) // даём фокус канвасу
+                    .catch(err => console.log(err));
             } else {
                 document.exitFullscreen();
             }
         }
+
     </script>
 </body>
 </html>
