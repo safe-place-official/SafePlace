@@ -3,15 +3,62 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>SafePlace Dev | Durov, Jailbreak</title>
+    <title>SafeGames | Durov, Jailbreak</title>
     <link rel="shortcut icon" href="TemplateData/1.webp">
     <link rel="stylesheet" href="TemplateData/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@1,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        :root {
+            --white: #FFFFFF;
+            --purple: #702BFF;
+            --dark-purple: #3E1A88;
+            --black: #000000;
+        }
+
+        .btn {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: min(1vw, 10px);
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font: inherit;
+            font-size: clamp(13px, 1.8vw, 16px);
+            color: var(--white);
+            background: linear-gradient(135deg, var(--purple), #A36BFF);
+            box-shadow: 0 6px 22px rgba(112,43,255,.45);
+            transition: transform .25s ease, box-shadow .25s ease;
+            white-space: nowrap;
+        }
+
+            .btn:hover {
+                transform: translateY(-2px) scale(1.03);
+                box-shadow: 0 10px 28px rgba(112,43,255,.6);
+            }
+
+            .btn:active {
+                transform: translateY(1px) scale(.98);
+            }
+
+            .btn.secondary {
+                background: linear-gradient(135deg, var(--dark-purple), var(--purple));
+            }
+
+            .btn.ghost {
+                background: transparent;
+                border: 2px solid var(--purple);
+                box-shadow: none;
+            }
+
         body {
             margin: 0;
             background: #000000;
             color: #FFFFFF;
-            font-family: sans-serif;
+            font-family: 'Rubik', sans-serif;
             display: flex;
             flex-direction: column;
             height: 100vh;
@@ -26,8 +73,9 @@
             z-index: 10;
             flex-shrink: 0;
         }
+
         #game-header {
-            background: #000000;
+            background: var(--black);
             padding: 10px 20px;
             display: flex;
             align-items: center;
@@ -35,13 +83,10 @@
             z-index: 10;
             flex-shrink: 0;
             border: 0;
-            border-left: 2px solid #702BFF;
-            border-right: 2px solid #702BFF;
-            border-bottom: 2px solid #702BFF;
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
+            border-left: 2px solid var(--purple);
+            border-right: 2px solid var(--purple);
+            border-bottom: 2px solid var(--purple);
         }
-
 
         .brand {
             display: flex;
@@ -82,20 +127,12 @@
             display: block;
         }
 
-        .btn {
-            background: #702BFF;
-            border: none;
-            color: #FFFFFF;
-            padding: 6px 12px;
-            cursor: pointer;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background 0.2s;
+        .text-link {
+            text-decoration: none; /* убирает подчеркивание */
+            color: inherit; /* наследует цвет родителя */
+            cursor: pointer; /* меняет курсор на руку при наведении */
         }
 
-            .btn:hover {
-                background: #3E1A88;
-            }
     </style>
 </head>
 <body>
@@ -103,10 +140,17 @@
 
     <header id="game-header">
         <div class="brand">
-            <img src="Group 85.png" alt="MainLogo" class="logo">
+            <a href="https://www.safe-games.ru">
+                <img src="Group 85.png" alt="MainLogo" class="logo">
+            </a>
         </div>
-        <div class="title">Durov, Jailbreak</div>
-        <button class="btn open-page" onclick="window.open('https://example.com/gamepage','_blank')">На страницу игры</button>
+
+        <div class="title">
+            <a href="../" class="text-link">Durov, Jailbreak</a>
+        </div>
+        <button class="btn fullscreen-btn" onclick="toggleFullscreen()">
+            <i class="fas fa-expand"></i> Развернуть
+        </button>
     </header>
 
 
@@ -121,12 +165,6 @@
         </div>
         <div id="unity-warning"> </div>
     </div>
-
-    <!-- Нижняя панель -->
-    <footer id="game-footer">
-        <span>Created by SafePlace</span>
-        <button class="btn fullscreen-btn" onclick="toggleFullscreen()">⛶ Полный экран</button>
-    </footer>
 
     <script>
         var canvas = document.querySelector("#unity-canvas");
