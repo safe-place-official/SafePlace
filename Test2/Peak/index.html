@@ -400,18 +400,21 @@
             }
         }
 
+
         @media (max-width: 480px) {
             .hero {
-                aspect-ratio: 3/4;
+                aspect-ratio: 4/3;
+                min-height: 35vh;
             }
 
             .hero__content {
-                grid-template-columns: 1fr;
+                grid-template-columns: min(100px, 25%) 1fr;
+                gap: min(4vw, 20px);
+                padding: min(5vw, 20px) min(4vw, 20px) min(4vw, 20px);
             }
 
             .game-logo {
-                width: min(100px, 30%);
-                justify-self: center;
+                border-radius: 10px;
             }
 
             .meta-row {
