@@ -14,19 +14,22 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Page Not Found | SafeGames</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 | SafeGames</title>
+    <meta name="description" content="Страница не найдена. Вернитесь на главную страницу SafeGames">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="icon" href="logo.png" type="image/x-icon">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="yandex-tableau-widget" href="tableau.json">
+    <link rel="icon" href="favicon.png" type="image/png">
     <style>
-        /* Copy all the same styles from the main page */
         @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
         :root {
             --primary-bg: #0a0a0a;
             --secondary-bg: #1a1a1a;
-            --accent-color: #3b82f6;
+            --accent-color: #8b5cf6;
+            --accent-color-light: #a78bfa;
+            --accent-color-dark: #7c3aed;
             --text-primary: #ffffff;
             --text-secondary: #d1d5db;
         }
@@ -35,62 +38,86 @@
             font-family: 'Rubik', sans-serif;
             background-color: var(--primary-bg);
             color: var(--text-primary);
-            overflow: hidden;
+            overflow-x: hidden;
             -webkit-tap-highlight-color: transparent;
-            -webkit-overflow-scrolling: touch;
-            overscroll-behavior: none;
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+            background: linear-gradient(90deg, #8b5cf6 0%, #c4b5fd 50%, #7c3aed 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.6), 0 0 20px rgba(139, 92, 246, 0.4), 0 0 30px rgba(124, 58, 237, 0.5);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
         }
 
+            .gradient-text:hover {
+                text-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(124, 58, 237, 0.8);
+                transform: scale(1.03);
+            }
+
         .glass {
-            background: rgba(15, 15, 15, 0.25);
+            background: rgba(20, 20, 20, 0.3);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.15);
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-20px);
-            }
+        .glow-purple-light {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
         }
 
-        .floating {
-            animation: float 6s ease-in-out infinite;
+        .social-media-btn {
+            display: flex;
+            align-items: center;
+            width: auto;
         }
 
-        /* Language Switcher */
+        .social-media-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .social-media-btn:hover .social-media-icon {
+            transform: translateY(-2px) scale(1.1);
+            background: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        }
+
         .language-switcher {
             position: relative;
             display: inline-block;
         }
 
         .language-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid rgba(139, 92, 246, 0.2);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
             transition: all 0.2s ease;
-            white-space: nowrap;
+            font-size: 12px;
         }
 
             .language-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(139, 92, 246, 0.25);
+                transform: translateY(-1px);
+            }
+
+            .language-btn i {
+                margin-right: 4px;
             }
 
         .language-dropdown {
@@ -98,11 +125,11 @@
             position: absolute;
             right: 0;
             background: rgba(30, 30, 30, 0.95);
-            min-width: 120px;
+            min-width: 80px;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 100;
-            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .language-switcher:hover .language-dropdown {
@@ -110,232 +137,255 @@
         }
 
         .language-option {
-            padding: 10px 15px;
+            padding: 8px 12px;
             text-decoration: none;
             display: block;
             color: white;
+            font-size: 12px;
             transition: background-color 0.2s;
         }
 
             .language-option:hover {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(139, 92, 246, 0.2);
             }
 
-
-        /* Social Media */
-        .social-media-btn {
+        .platform-btn {
             display: inline-flex;
-            flex-direction: column;
-            align-items: center;
-            width: 80px;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            color: white;
-            cursor: pointer;
-        }
-
-        .social-media-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 12px;
-            display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            z-index: 1;
+            padding: 8px 14px;
+            border-radius: 20px;
+            background: rgba(139, 92, 246, 0.15);
+            color: white;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            white-space: nowrap;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
-        .social-media-btn:hover .social-media-icon {
-            transform: translateY(-4px) scale(1.08);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
+            .platform-btn:hover {
+                background: rgba(139, 92, 246, 0.3);
+                transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+            }
 
-        .social-media-icon::before {
-            content: '';
-            position: absolute;
+            .platform-btn i {
+                margin-right: 6px;
+            }
+
+        nav {
+            position: fixed;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: -1;
+            width: 100%;
+            z-index: 50;
+            padding: 1rem 0;
+            display: flex;
+            justify-content: center;
         }
 
-        .social-media-btn:hover .social-media-icon::before {
-            opacity: 0.6;
+            nav .container {
+                width: calc(100% - 1rem);
+                max-width: 1200px;
+                margin: 0 auto;
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                border: 1px solid rgba(139, 92, 246, 0.3);
+                padding: 0.75rem 1rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        footer {
+            position: relative;
+            width: 100%;
+            padding: 1.5rem 0;
+            display: flex;
+            justify-content: center;
+        }
+
+            footer .container {
+                width: calc(100% - 1rem);
+                max-width: 1200px;
+                margin: 0 auto;
+                background: rgba(20, 20, 20, 0.3);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                border-radius: 16px;
+                border: 1px solid rgba(139, 92, 246, 0.15);
+                padding: 1.5rem 1rem;
+                box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        @media (max-width: 768px) {
+            nav, footer {
+                padding: 0.75rem 0;
+            }
+
+                nav .container, footer .container {
+                    width: calc(100% - 1rem);
+                    padding: 0.5rem 0.75rem;
+                }
+
+            .hero-title {
+                font-size: 3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.25rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            nav, footer {
+                padding: 0.5rem 0;
+            }
+
+                nav .container, footer .container {
+                    width: calc(100% - 0.5rem);
+                    padding: 0.5rem;
+                }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .social-media-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
+            }
         }
     </style>
 </head>
-<body class="bg-black w-screen min-h-screen flex flex-col">
-    <!-- Background Gradient Elements -->
-    <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-blue-500/10 blur-[80px] opacity-20 z-0"></div>
-    <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-500/10 blur-[80px] opacity-20 z-0"></div>
+<body class="bg-black">
+    <!-- Background Elements -->
+    <div class="fixed inset-0 bg-gradient-to-br from-black via-purple-900/10 to-black z-0"></div>
+    <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-purple-500/20 blur-[80px] opacity-30 z-0"></div>
+    <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-700/20 blur-[80px] opacity-30 z-0"></div>
+    <div id="particles-js" class="fixed inset-0 z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md border-b border-gray-800 py-3 px-4">
+    <nav class="fixed w-full z-50">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8 md:w-10 md:h-10">
-                <span class="text-xl font-bold gradient-text">SAFEGAMES</span>
             </div>
-
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-4">
+                <!-- Social Media Buttons -->
+                <div class="flex items-center gap-2">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-telegram"></i></div>
+                    </a>
+                    <a href="https://safeplace.itch.io/" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-itch-io"></i></div>
+                    </a>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-github"></i></div>
+                    </a>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-youtube"></i></div>
+                    </a>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fas fa-newspaper"></i></div>
+                    </a>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fas fa-gem"></i></div>
+                    </a>
+                </div>
+                <!-- Language Switcher -->
                 <div class="language-switcher">
                     <button class="language-btn" id="current-language">
-                        <span id="language-text">Русский</span>
-                        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        <i class="fas fa-globe"></i>
+                        <span id="language-text">RU</span>
                     </button>
                     <div class="language-dropdown">
-                        <a href="#" class="language-option" data-lang="ru">Русский</a>
-                        <a href="#" class="language-option" data-lang="en">English</a>
+                        <a href="#" class="language-option" data-lang="ru">RU</a>
+                        <a href="#" class="language-option" data-lang="en">EN</a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- 404 Content -->
-    <main class="flex-grow flex items-center justify-center px-4 relative z-10">
-        <div class="text-center max-w-2xl mx-auto">
-            <div class="glass p-8 md:p-12 rounded-2xl backdrop-blur-lg">
-                <div class="floating inline-block mb-8">
-                    <i class="fas fa-exclamation-triangle text-6xl md:text-8xl gradient-text"></i>
-                </div>
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 gradient-text">404</h1>
-                <h2 class="text-xl md:text-2xl font-semibold mb-6" data-i18n="404.title">Page Not Found</h2>
-                <p class="text-gray-300 mb-8" data-i18n="404.message">
-                    The page you're looking for doesn't exist or has been moved.
-                </p>
-                <div class="flex flex-wrap justify-center gap-4">
-                    <a href="https://safe-place-official.github.io/SafePlace/"
-                       class="px-6 py-3 bg-white/10 hover:bg-white/20 rounded-lg transition-all flex items-center">
-                        <i class="fas fa-home mr-2"></i>
-                        <span data-i18n="404.home">Return Home</span>
-                    </a>
-                </div>
-            </div>
+    <!-- 404 Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-purple-900/5 to-black/0 z-10"></div>
+        <div class="container mx-auto relative z-20 text-center px-4">
+            <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6 gradient-text leading-tight" data-i18n="404.title">404</h1>
+            <p class="hero-subtitle text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="404.subtitle">Page Not Found</p>
+            <a href="/" class="platform-btn inline-flex items-center"><i class="fas fa-home"></i><span data-i18n="404.home">Back to Home</span></a>
         </div>
-    </main>
+    </section>
 
     <!-- Footer -->
-    <footer class="w-full py-8 md:py-12 bg-black/50 backdrop-blur-lg border-t border-white/10 relative z-20">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8">
-                    <span class="text-xl font-bold gradient-text">SAFEGAMES</span>
-                </div>
-                <div class="flex flex-wrap justify-center gap-4 md:gap-6 mb-4 md:mb-0">
-                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                    </a>
-                    <a href="https://safeplace.itch.io/" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-itch-io"></i>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                    </a>
-                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
-                    </a>
-                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="text-center text-gray-400 text-sm mt-6" data-i18n="footer.copyright">
-                © 2025 SafeGames All rights reserved.
-            </div>
+    <footer class="py-8 md:py-12">
+        <div class="container mx-auto px-4 md:px-6 flex justify-center items-center">
+            <div class="text-center text-gray-400 text-sm" data-i18n="footer.copyright">© 2025 SafeGames. All rights reserved.</div>
         </div>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        // Translation data for 404 page
+        // Particles.js config
+        document.addEventListener('DOMContentLoaded', () => {
+            particlesJS('particles-js', {
+                particles: {
+                    number: { value: 80, density: { enable: true, value_area: 800 } },
+                    color: { value: "#8b5cf6" },
+                    shape: { type: "circle" },
+                    opacity: { value: 0.5, random: true },
+                    size: { value: 3, random: true },
+                    line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.4, width: 1 },
+                    move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: { onhover: { enable: false, mode: "repulse" }, onclick: { enable: false, mode: "push" } }
+                }
+            });
+        });
+
+        // Translation data
         const translations = {
             ru: {
-                "404.title": "Страница не найдена",
-                "404.message": "Запрашиваемая страница не существует или была перемещена.",
+                "404.title": "404",
+                "404.subtitle": "Страница не найдена",
                 "404.home": "На главную",
-                "404.games": "Наши игры",
                 "footer.copyright": "© 2025 SafeGames. Все права защищены."
             },
             en: {
-                "404.title": "Page Not Found",
-                "404.message": "The page you're looking for doesn't exist or has been moved.",
-                "404.home": "Return Home",
-                "404.games": "View Games",
+                "404.title": "404",
+                "404.subtitle": "Page Not Found",
+                "404.home": "Back to Home",
                 "footer.copyright": "© 2025 SafeGames. All rights reserved."
             }
         };
 
+        // Current language
         let currentLanguage = 'ru';
 
         // Function to translate the page
         function translatePage(lang) {
             currentLanguage = lang;
-            const langText = lang === 'ru' ? 'Русский' : 'English';
-            document.getElementById('language-text').textContent = langText;
-
-            // Update all elements with data-i18n attribute
+            document.getElementById('language-text').textContent = lang === 'ru' ? 'RU' : 'EN';
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.value = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                    element.textContent = translations[lang][key];
                 }
-            });
-
-            // Update coming soon text
-            const comingSoonText = lang === 'ru' ? 'В разработке' : 'In Development';
-            document.querySelectorAll('.coming-soon').forEach(el => {
-                el.setAttribute('data-coming-soon-text', comingSoonText);
-            });
-
-            // Update progress text
-            const progressText = lang === 'ru' ? 'Прогресс разработки' : 'Development Progress';
-            document.querySelectorAll('.progress-info span:first-child').forEach(el => {
-                el.textContent = progressText;
             });
         }
 
         // Language switcher functionality
         document.querySelectorAll('.language-option').forEach(option => {
-            option.addEventListener('click', function (e) {
+            option.addEventListener('click', e => {
                 e.preventDefault();
-                const lang = this.getAttribute('data-lang');
-                translatePage(lang);
-
-                // Close dropdowns after selection
+                translatePage(option.getAttribute('data-lang'));
                 document.querySelectorAll('.language-dropdown').forEach(dropdown => {
                     dropdown.style.display = 'none';
                 });
@@ -344,15 +394,15 @@
 
         // Toggle dropdowns on button click
         document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', function (e) {
+            btn.addEventListener('click', e => {
                 e.stopPropagation();
-                const dropdown = this.nextElementSibling;
+                const dropdown = btn.nextElementSibling;
                 dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
             });
         });
 
         // Close dropdowns when clicking outside
-        document.addEventListener('click', function () {
+        document.addEventListener('click', () => {
             document.querySelectorAll('.language-dropdown').forEach(dropdown => {
                 dropdown.style.display = 'none';
             });
@@ -360,6 +410,13 @@
 
         // Initialize page with Russian language
         translatePage('ru');
+
+        // Disable animations for reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.querySelectorAll('[class*="animate-"]').forEach(el => {
+                el.style.animation = 'none';
+            });
+        }
     </script>
 </body>
 </html>
