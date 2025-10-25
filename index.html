@@ -1,15 +1,3 @@
-<!--                                                                                                                                                                                           -->
-<!--                                          | $$                    | $$      | $$                        / $$$$$$            / $$$$$$        | $$$$$$$ | $$                                 -->
-<!--                                          | $$                    | $$      | $$                       / $$__  $$          /$$__  $$        | $$__  $$| $$                                 -->
-<!--  /$$$$$$$  /$$$$$$   /$$$$$$   /$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$$      | $$$$$$$  /$$   /$$      | $$  \__/  /$$$$$$ | $$  \__//$$$$$$ | $$  \ $$| $$  /$$$$$$   /$$$$$$$  /$$$$$$    -->
-<!-- /$$_____/ /$$__  $$ /$$__  $$ |____  $$|_  $$_/   /$$__  $$ /$$__  $$      | $$__  $$| $$  | $$      |  $$$$$$  |____  $$| $$$$   /$$__  $$| $$$$$$$/| $$ |____  $$ /$$_____/ /$$__  $$   -->
-<!--| $$      | $$  \__/| $$$$$$$$  /$$$$$$$  | $$    | $$$$$$$$| $$  | $$      | $$  \ $$| $$  | $$       \____  $$  /$$$$$$$| $$_/  | $$$$$$$$| $$____/ | $$  /$$$$$$$| $$      | $$$$$$$$   -->
-<!--| $$      | $$      | $$_____/ /$$__  $$  | $$ /$$| $$_____/| $$  | $$      | $$  | $$| $$  | $$       /$$  \ $$ /$$__  $$| $$    | $$_____/| $$      | $$ /$$__  $$| $$      | $$_____/   -->
-<!--|  $$$$$$$| $$      |  $$$$$$$|  $$$$$$$  |  $$$$/|  $$$$$$$|  $$$$$$$      | $$$$$$$/|  $$$$$$$      |  $$$$$$/|  $$$$$$$| $$    |  $$$$$$$| $$      | $$|  $$$$$$$|  $$$$$$$|  $$$$$$$   -->
-<!-- \_______/|__/       \_______/ \_______/   \___/   \_______/ \_______/      |_______/  \____  $$       \______/  \_______/|__/     \_______/|__/      |__/ \_______/ \_______/ \_______/   -->
-<!--                                                                                            | $$                                                                                           -->
-<!--                                                                                      |  $$$$$$/                                                                                           -->
-<!--                                                                                       \______/                                                                                            -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -27,7 +15,9 @@
         :root {
             --primary-bg: #0a0a0a;
             --secondary-bg: #1a1a1a;
-            --accent-color: #3b82f6;
+            --accent-color: #8b5cf6;
+            --accent-color-light: #a78bfa;
+            --accent-color-dark: #7c3aed;
             --text-primary: #ffffff;
             --text-secondary: #d1d5db;
         }
@@ -41,11 +31,18 @@
         }
 
         .gradient-text {
-            background: linear-gradient(90deg, #fff 0%, #aaa 100%);
+            background: linear-gradient(90deg, #8b5cf6 0%, #c4b5fd 50%, #7c3aed 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            text-shadow: 0 0 10px rgba(139, 92, 246, 0.6), 0 0 20px rgba(139, 92, 246, 0.4), 0 0 30px rgba(124, 58, 237, 0.5);
+            transition: text-shadow 0.3s ease, transform 0.3s ease;
         }
+
+            .gradient-text:hover {
+                text-shadow: 0 0 20px rgba(139, 92, 246, 0.8), 0 0 40px rgba(139, 92, 246, 0.6), 0 0 60px rgba(124, 58, 237, 0.8);
+                transform: scale(1.03);
+            }
 
         /* Game Cards */
         .game-card {
@@ -55,15 +52,16 @@
             height: 100%;
             display: flex;
             flex-direction: column;
-            border-radius: 12px;
-            background: var(--secondary-bg);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid rgba(139, 92, 246, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
         }
 
             .game-card:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+                transform: translateY(-8px);
+                box-shadow: 0 15px 30px rgba(139, 92, 246, 0.2);
+                border-color: rgba(139, 92, 246, 0.4);
             }
 
         .game-image-container {
@@ -81,46 +79,26 @@
         }
 
         .game-card:hover .game-image {
-            transform: scale(1.05);
+            transform: scale(1.08);
         }
 
-        /* Coming Soon */
-        .coming-soon {
-            position: relative;
+        /* Coming Soon Animation */
+        .game-card.coming-soon {
+            animation: pulse-glow 2s infinite ease-in-out;
         }
 
-            .coming-soon::after {
-                content: attr(data-coming-soon-text);
-                position: absolute;
-                top: 12px;
-                right: 12px;
-                background: rgba(0, 0, 0, 0.7);
-                color: #fff;
-                padding: 4px 10px;
-                border-radius: 20px;
-                font-size: 12px;
-                font-weight: bold;
-                z-index: 2;
+        @keyframes pulse-glow {
+            0% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
             }
 
-        .construction-icon {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #e0e0e0;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1;
+            50% {
+                box-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+            }
+
+            100% {
+                box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
+            }
         }
 
         .coming-soon-blur {
@@ -128,17 +106,37 @@
             opacity: 0.7;
         }
 
+        .construction-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(139, 92, 246, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: #c4b5fd;
+            border: 1px solid rgba(139, 92, 246, 0.4);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
         /* Glass Effects */
         .glass {
-            background: rgba(15, 15, 15, 0.25);
+            background: rgba(20, 20, 20, 0.3);
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.15);
         }
 
         .glass-light {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(139, 92, 246, 0.05);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
         }
@@ -151,27 +149,29 @@
             margin-top: 12px;
         }
 
-        .platform-btn i {
-            margin-right: 6px;
-        }
-
         .platform-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 20px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(139, 92, 246, 0.15);
             color: white;
             font-size: 12px;
-            transition: all 0.2s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
             white-space: nowrap;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
             .platform-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(139, 92, 246, 0.3);
                 transform: translateY(-2px);
+                box-shadow: 0 4px 12px rgba(139, 92, 246, 0.2);
+            }
+
+            .platform-btn i {
+                margin-right: 6px;
             }
 
         /* Language Switcher */
@@ -181,20 +181,25 @@
         }
 
         .language-btn {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
+            background: rgba(139, 92, 246, 0.15);
+            border: 2px solid rgba(139, 92, 246, 0.2);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
+            padding: 6px 10px;
+            border-radius: 13px;
             cursor: pointer;
             display: flex;
             align-items: center;
             transition: all 0.2s ease;
-            white-space: nowrap;
+            font-size: 12px;
         }
 
             .language-btn:hover {
-                background: rgba(255, 255, 255, 0.2);
+                background: rgba(139, 92, 246, 0.25);
+                transform: translateY(-1px);
+            }
+
+            .language-btn i {
+                margin-right: 4px;
             }
 
         .language-dropdown {
@@ -202,11 +207,11 @@
             position: absolute;
             right: 0;
             background: rgba(30, 30, 30, 0.95);
-            min-width: 120px;
+            min-width: 80px;
             border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 100;
-            overflow: hidden;
+            border: 1px solid rgba(139, 92, 246, 0.2);
         }
 
         .language-switcher:hover .language-dropdown {
@@ -214,153 +219,42 @@
         }
 
         .language-option {
-            padding: 10px 15px;
+            padding: 8px 12px;
             text-decoration: none;
             display: block;
             color: white;
+            font-size: 12px;
             transition: background-color 0.2s;
         }
 
             .language-option:hover {
-                background: rgba(255, 255, 255, 0.1);
+                background: rgba(139, 92, 246, 0.2);
             }
 
         /* Social Media */
         .social-media-btn {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            width: 80px;
-            transition: all 0.3s ease;
+            width: auto;
         }
 
         .social-media-icon {
-            width: 44px;
-            height: 44px;
+            width: 32px;
+            height: 32px;
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            margin-bottom: 8px;
-            background: rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(255, 255, 255, 0.18);
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            font-size: 16px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            transition: all 0.3s ease;
         }
 
         .social-media-btn:hover .social-media-icon {
-            transform: translateY(-4px) scale(1.08);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-        }
-
-        .social-media-icon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 60%);
-            border-radius: inherit;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .social-media-btn:hover .social-media-icon::before {
-            opacity: 0.6;
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-fadeIn {
-            animation: fadeIn 0.6s ease forwards;
-        }
-
-        @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            100% {
-                transform: scale(1);
-            }
-        }
-
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: transparent;
-            border: none;
-            color: white;
-            font-size: 24px;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.98);
-            z-index: 1000;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-            .mobile-menu.active {
-                display: flex;
-                opacity: 1;
-            }
-
-        .mobile-menu-item {
-            padding: 15px;
-            font-size: 1.5rem;
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-            .mobile-menu-item:hover {
-                color: var(--accent-color);
-            }
-
-        .close-menu-btn {
-            position: absolute;
-            top: 30px;
-            right: 30px;
-            font-size: 2rem;
-            color: white;
-            background: none;
-            border: none;
-            cursor: pointer;
+            transform: translateY(-2px) scale(1.1);
+            background: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
 
         /* Progress Bar */
@@ -388,7 +282,7 @@
 
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #636363, #FFFFFF);
+            background: linear-gradient(90deg, #8b5cf6, #c4b5fd);
             border-radius: 3px;
             transition: width 1s ease-out;
             position: relative;
@@ -416,6 +310,15 @@
             }
         }
 
+        /* Purple Glow Effects */
+        .glow-purple {
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .glow-purple-light {
+            box-shadow: 0 0 15px rgba(139, 92, 246, 0.2);
+        }
+
         /* Responsive Adjustments */
         @media (max-width: 1024px) {
             .hero-title {
@@ -437,37 +340,10 @@
                 font-size: 1rem;
             }
 
-            .hero-cards {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .hero-card {
-                width: 80%;
-                margin-bottom: 1rem;
-            }
-
-            .language-switcher {
-                display: block;
-            }
-
-            .mobile-language-switcher {
-                display: none;
-            }
-
-            .social-media-container {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .footer .flex.space-x-4 {
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 12px;
-            }
-
-            .footer .social-media-btn {
-                width: 70px; /* немного уменьшим ширину для мобильных */
-                margin: 0 5px;
+            .social-media-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 14px;
             }
         }
 
@@ -485,60 +361,152 @@
                 gap: 1rem;
             }
 
-            .social-media-container {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-social {
-                justify-content: center;
-                margin: 1rem 0;
-            }
-
-            .footer .flex.space-x-4 {
-                max-width: 300px;
-                margin: 0 auto;
+            .social-media-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 12px;
             }
         }
 
-        /* Performance Optimizations */
-        .will-change {
-            will-change: transform, opacity;
+        /* Navigation and Footer */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+            padding: 1rem 0; /* Vertical padding only, horizontal handled by container */
+            display: flex;
+            justify-content: center; /* Center the container horizontally */
         }
 
-        .backface-hidden {
-            backface-visibility: hidden;
+            nav .container {
+                width: calc(100% - 1rem); /* Full width minus margins */
+                max-width: 1200px;
+                margin: 0 auto; /* Center horizontally */
+                background: rgba(0, 0, 0, 0.8);
+                backdrop-filter: blur(10px);
+                border-radius: 16px;
+                border: 1px solid rgba(139, 92, 246, 0.3);
+                padding: 0.75rem 1rem;
+                box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Responsive adjustments for nav */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.75rem 0; /* Reduced vertical padding */
+            }
+
+                nav .container {
+                    width: calc(100% - 1rem); /* Maintain margin on both sides */
+                    margin: 0 auto; /* Explicitly center */
+                    padding: 0.5rem 0.75rem;
+                }
+        }
+
+        @media (max-width: 480px) {
+            nav {
+                padding: 0.5rem 0; /* Minimal vertical padding */
+            }
+
+                nav .container {
+                    width: calc(100% - 0.5rem); /* Smaller margins for small screens */
+                    margin: 0 auto; /* Explicitly center */
+                    padding: 0.5rem;
+                }
+        }
+
+        footer {
+            position: relative;
+            width: 100%;
+            padding: 1.5rem 0; /* Vertical padding only, horizontal handled by container */
+            display: flex;
+            justify-content: center; /* Center the container horizontally */
+        }
+
+            footer .container {
+                width: calc(100% - 1rem); /* Full width minus margins */
+                max-width: 1200px;
+                margin: 0 auto; /* Center horizontally */
+                background: rgba(20, 20, 20, 0.3); /* Glass effect background */
+                backdrop-filter: blur(16px); /* Glass effect blur */
+                -webkit-backdrop-filter: blur(16px);
+                border-radius: 16px;
+                border: 1px solid rgba(139, 92, 246, 0.15); /* Matching glass border */
+                padding: 1.5rem 1rem;
+                box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        /* Responsive adjustments for footer */
+        @media (max-width: 768px) {
+            footer {
+                padding: 1rem 0; /* Reduced vertical padding */
+            }
+
+                footer .container {
+                    width: calc(100% - 1rem); /* Maintain margin on both sides */
+                    margin: 0 auto; /* Explicitly center */
+                    padding: 1rem 0.75rem;
+                }
+        }
+
+        @media (max-width: 480px) {
+            footer {
+                padding: 0.75rem 0; /* Minimal vertical padding */
+            }
+
+                footer .container {
+                    width: calc(100% - 0.5rem); /* Smaller margins for small screens */
+                    margin: 0 auto; /* Explicitly center */
+                    padding: 0.75rem;
+                }
         }
     </style>
 </head>
 <body class="bg-black">
     <!-- Background Elements -->
-    <div class="fixed inset-0 bg-[url('hero-bg.jpg')] bg-cover bg-center opacity-20 z-0"></div>
-    <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-blue-500/10 blur-[80px] opacity-20 z-0"></div>
-    <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-500/10 blur-[80px] opacity-20 z-0"></div>
+    <div class="fixed inset-0 bg-gradient-to-br from-black via-purple-900/10 to-black z-0"></div>
+    <div class="fixed radial-gradient w-[300px] h-[300px] -top-[150px] -right-[150px] bg-purple-500/20 blur-[80px] opacity-30 z-0"></div>
+    <div class="fixed radial-gradient w-[300px] h-[300px] -bottom-[150px] -left-[150px] bg-purple-700/20 blur-[80px] opacity-30 z-0"></div>
     <div id="particles-js" class="fixed inset-0 z-0"></div>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-black/80 backdrop-blur-md py-3 px-4 outline outline-3 outline-white/10 rounded-bl-xl rounded-br-xl">
+    <nav class="fixed w-full z-50">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8 md:w-10 md:h-10">
-                <span class="text-xl font-bold gradient-text">SAFEGAMES</span>
             </div>
-
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center space-x-4">
+                <!-- Social Media Buttons -->
+                <div class="flex items-center gap-2">
+                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-telegram"></i></div>
+                    </a>
+                    <a href="https://safeplace.itch.io/" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-itch-io"></i></div>
+                    </a>
+                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-github"></i></div>
+                    </a>
+                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fab fa-youtube"></i></div>
+                    </a>
+                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fas fa-newspaper"></i></div>
+                    </a>
+                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
+                        <div class="social-media-icon"><i class="fas fa-gem"></i></div>
+                    </a>
+                </div>
+                <!-- Language Switcher -->
                 <div class="language-switcher">
                     <button class="language-btn" id="current-language">
-                        <span id="language-text">Русский</span>
-                        <i class="fas fa-chevron-down ml-2 text-xs"></i>
+                        <i class="fas fa-globe"></i>
+                        <span id="language-text">RU</span>
                     </button>
                     <div class="language-dropdown">
-                        <a href="#" class="language-option" data-lang="ru">Русский</a>
-                        <a href="#" class="language-option" data-lang="en">English</a>
+                        <a href="#" class="language-option" data-lang="ru">RU</a>
+                        <a href="#" class="language-option" data-lang="en">EN</a>
                     </div>
                 </div>
             </div>
@@ -547,36 +515,28 @@
 
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center pt-16 pb-20 px-4">
-        <div class="absolute inset-0 bg-black/0 z-10"></div>
-        <div class="absolute inset-0 bg-[url('hero-bg.jpg')] bg-cover bg-center opacity-30 z-0"></div>
-
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-purple-900/5 to-black/0 z-10"></div>
         <div class="container mx-auto relative z-20 text-center px-4">
             <h1 class="hero-title text-5xl md:text-7xl font-bold mb-6 gradient-text leading-tight" data-i18n="hero.title">WE CREATE INDIE PRODUCTS</h1>
-            <p class="hero-subtitle text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="hero.subtitle">
-                Digital site about the digital world.
-            </p>
-
-            <!-- Floating Glass Cards -->
+            <p class="hero-subtitle text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-8" data-i18n="hero.subtitle">Digital site about the digital world.</p>
             <div class="flex flex-wrap justify-center gap-4 md:gap-6 mt-8">
-                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <i class="fas fa-gamepad text-3xl md:text-4xl mb-2 gradient-text"></i>
-                    <p class="text-xs text-gray-300" data-i18n="hero.games">5 Games</p>
+                    <p class="text-xs text-gray-300" data-i18n="hero.games">6 Games</p>
                 </div>
-                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <i class="fas fa-users text-3xl md:text-4xl mb-2 gradient-text"></i>
                     <p class="text-xs text-gray-300" data-i18n="hero.players">4.5K+ Players</p>
                 </div>
-                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl bg-white/10 transition-all duration-300 hover:scale-105">
+                <div class="glass p-4 md:p-6 rounded-xl w-24 md:w-32 text-center backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <i class="fas fa-rocket text-3xl md:text-4xl mb-2 gradient-text"></i>
                     <p class="text-xs text-gray-300" data-i18n="hero.since">Since 2022</p>
                 </div>
             </div>
         </div>
-
         <div id="scroll-down" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-20 text-center cursor-pointer">
-            <span class="text-gray-300" data-i18n="hero.explore">Explore</span>
-            <br>
-            <i class="fas fa-chevron-down text-gray-300 mt-2 animate-bounce"></i>
+            <span class="text-gray-300" data-i18n="hero.explore">Explore</span><br>
+            <i class="fas fa-chevron-down text-purple-400 mt-2 animate-bounce"></i>
         </div>
     </section>
 
@@ -584,12 +544,11 @@
     <section id="games" class="py-12 md:py-20 container mx-auto px-4 md:px-6 relative">
         <div class="text-center mb-12 md:mb-16">
             <h2 class="text-3xl md:text-4xl font-bold gradient-text mb-4" data-i18n="games.title">OUR PRODUCTS</h2>
-            <div class="w-16 h-1 bg-white/50 mx-auto rounded-full"></div>
+            <div class="w-16 h-1 bg-purple-500 mx-auto rounded-full"></div>
         </div>
-
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             <!-- Game 7 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="7.webp" alt="DroneDelivery" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
@@ -597,176 +556,154 @@
                 <div class="p-4 md:p-6 flex-grow">
                     <div class="flex items-center gap-2 mb-2">
                         <h3 class="text-lg md:text-xl font-bold mb-0" data-i18n="games.game7.title">DroneDelivery</h3>
-                        <span class="glass bg-white/10 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
+                        <span class="glass bg-purple-500/20 text-xs px-2 py-1 rounded-full" data-i18n="games.new">NEW</span>
                     </div>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game7.description">
-                        Симулятор доставки пиццы при помощи дронов.
-                    </p>
-                    <a href="DroneDelivery_Installer.exe" download class="glass platform-btn archive">
-                        <i class="fas fa-download"></i><span data-i18n="games.download">Скачать</span>
-                    </a>
-                    <a href="https://safeplace.itch.io/dronedelivery" target="_blank" class="glass platform-btn itch">
-                        <i class="fab fa-itch-io"></i> Itch
-                    </a>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game7.description">Симулятор доставки пиццы при помощи дронов.</p>
+                    <div class="platform-links">
+                        <a href="DroneDelivery_Installer.exe" download class="platform-btn archive"><i class="fas fa-download"></i><span data-i18n="games.download">Скачать</span></a>
+                        <a href="https://safeplace.itch.io/dronedelivery" target="_blank" class="platform-btn itch"><i class="fab fa-itch-io"></i>Itch</a>
+                    </div>
                 </div>
             </div>
-
             <!-- Game 1 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change">
+            <div class="game-card animate-fadeIn will-change">
                 <div class="game-image-container">
                     <img src="1.webp" alt="Дуров, побег из тюрьмы" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
-                    <div class="flex justify-between items-start">
-                        <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game1.title">Дуров, побег из тюрьмы</h3>
-                    </div>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game1.description">
-                        Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.
-                    </p>
+                    <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game1.title">Дуров, побег из тюрьмы</h3>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game1.description">Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.</p>
                     <div class="platform-links">
-                        <a href="/DurovJailbreak/" target="_blank" class="glass platform-btn safegames">
-                            <i class="fas fa-shield"></i> SG
-                        </a>
-                        <a href="https://safeplace.itch.io/durov-escape-from-prison" target="_blank" class="glass platform-btn itch">
-                            <i class="fab fa-itch-io"></i> Itch
-                        </a>
+                        <a href="/DurovJailbreak/" target="_blank" class="platform-btn safegames"><i class="fas fa-shield"></i>SG</a>
+                        <a href="https://safeplace.itch.io/durov-escape-from-prison" target="_blank" class="platform-btn itch"><i class="fab fa-itch-io"></i>Itch</a>
                     </div>
                 </div>
             </div>
-
             <!-- Game 3 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="5.webp" alt="Rocket Simulator" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game3.title">Rocket Simulator</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game3.description">
-                        Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.
-                    </p>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game3.description">Построй ракету и отправься в космическое приключение, избегая столкновения с метеоритами и собирая монеты.</p>
                     <div class="platform-links">
-                        <a href="/RocketSimulator/" target="_blank" class="glass platform-btn safegames">
-                            <i class="fas fa-shield"></i> SG
-                        </a>
-                        <a href="https://safeplace.itch.io/rocketsimulator" target="_blank" class="glass platform-btn itch">
-                            <i class="fab fa-itch-io"></i> Itch
-                        </a>
-                        <a href="https://yandex.ru/games/app/358275?lang=en" target="_blank" class="glass platform-btn yandex-link">
-                            <i class="fas fa-gamepad"></i> YG
-                        </a>
-                        <a href="https://www.rustore.ru/catalog/app/com.SafePlace.RocketSimulator" target="_blank" class="glass platform-btn RuStore">
-                            <i class="fas fa-store"></i> RuStore
-                        </a>
+                        <a href="/RocketSimulator/" target="_blank" class="platform-btn safegames"><i class="fas fa-shield"></i>SG</a>
+                        <a href="https://safeplace.itch.io/rocketsimulator" target="_blank" class="platform-btn itch"><i class="fab fa-itch-io"></i>Itch</a>
+                        <a href="https://yandex.ru/games/app/358275?lang=ru" target="_blank" class="platform-btn yandex-link"><i class="fas fa-gamepad"></i>YG</a>
+                        <a href="https://www.rustore.ru/catalog/app/com.SafePlace.RocketSimulator" target="_blank" class="platform-btn RuStore"><i class="fas fa-store"></i>RuStore</a>
                     </div>
                 </div>
             </div>
-
             <!-- Game 2 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="4.webp" alt="Крестики нолики 2.0" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game2.title">Крестики нолики 2.0</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game2.description">
-                        Продолжение классической игры с новыми возможностями.
-                    </p>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game2.description">Продолжение классической игры с новыми возможностями.</p>
                     <div class="platform-links">
-                        <a href="/TicTacToe/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                            <span data-i18n="games.play">Play Now</span> <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        <a href="/TicTacToe/" target="_blank" class="platform-btn"><i class="fas fa-arrow-right"></i><span data-i18n="games.play">Play Now</span></a>
                     </div>
                 </div>
             </div>
-
             <!-- Game 4 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="2.webp" alt="Intellectual Marathon" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game4.title">Intellectual Marathon</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game4.description">
-                        Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.
-                    </p>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game4.description">Викторина с 100 вопросами, на каждый из которых нужно ответить за 60 секунд.</p>
                     <div class="platform-links">
-                        <a href="/IntellectualMarathon/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                            <span data-i18n="games.play">Play Now</span> <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        <a href="/IntellectualMarathon/" target="_blank" class="platform-btn"><i class="fas fa-arrow-right"></i><span data-i18n="games.play">Play Now</span></a>
                     </div>
                 </div>
             </div>
-
             <!-- Game 5 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="3.webp" alt="Волки и овцы" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game5.title">Волки и овцы</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game5.description">
-                        Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.
-                    </p>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game5.description">Стратегическая игра для двоих: овца пытается пройти сквозь волков, а они её блокируют.</p>
                     <div class="platform-links">
-                        <a href="/WolvesAndSheeps/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                            <span data-i18n="games.play">Play Now</span> <i class="fas fa-arrow-right ml-2"></i>
-                        </a>
+                        <a href="/WolvesAndSheeps/" target="_blank" class="platform-btn"><i class="fas fa-arrow-right"></i><span data-i18n="games.play">Play Now</span></a>
                     </div>
                 </div>
             </div>
-
             <!-- Game 6 -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
+            <div class="game-card animate-fadeIn will-change" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="6.webp" alt="Hive" class="game-image">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
                     <h3 class="text-lg md:text-xl font-bold mb-2" data-i18n="games.game6.title">Hive</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game6.description">
-                        Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.
-                    </p>
-                    <a href="https://safe-place-official.github.io/Hive/" target="_blank" class="inline-flex items-center text-white hover:text-gray-300 transition">
-                        <span data-i18n="games.visit">Visit Now</span> <i class="fas fa-arrow-right ml-2"></i>
-                    </a>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game6.description">Сайт для школьников, где можно легко найти конспекты по классу, предмету и теме.</p>
+                    <div class="platform-links">
+                        <a href="https://safe-place-official.github.io/Hive/" target="_blank" class="platform-btn"><i class="fas fa-arrow-right"></i><span data-i18n="games.visit">Visit Now</span></a>
+                    </div>
                 </div>
             </div>
-
-            <!-- Coming Soon -->
-            <div class="glass backdrop-blur-xl bg-white/10 game-card animate-fadeIn will-change coming-soon" style="animation-delay: 0.5s;" data-coming-soon-text="In Development">
+            <!-- Game 8 -->
+            <div class="game-card animate-fadeIn will-change coming-soon" style="animation-delay: 0.5s;">
                 <div class="game-image-container">
                     <img src="8.webp" alt="SafeGames" class="game-image coming-soon-blur">
                     <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                    <div class="construction-icon">
-                        <i class="fas fa-hammer"></i>
-                    </div>
+                    <div class="construction-icon"><i class="fas fa-hammer"></i></div>
                 </div>
                 <div class="p-4 md:p-6 flex-grow">
-                    <h3 class="text-lg md:text-xl font-bold mb-2">SafeGames</h3>
-                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game8.description">
-                        Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.
-                    </p>
-
-                    <!-- Progress Bar -->
+                    <div class="flex items-center gap-2 mb-2">
+                        <h3 class="text-lg md:text-xl font-bold mb-0">SafeGames</h3>
+                        <span class="glass bg-purple-500/20 text-xs px-2 py-1 rounded-full" data-i18n="games.in_development">In Development</span>
+                    </div>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game8.description">Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.</p>
                     <div class="progress-container">
                         <div class="progress-info">
-                            <span>Development Progress</span>
+                            <span data-i18n="games.progress">Development Progress</span>
                             <span id="progress-percentage">3%</span>
                         </div>
                         <div class="progress-bar">
                             <div class="progress-fill" id="progress-fill" style="width: 3%"></div>
                         </div>
                     </div>
-
-                    <div class="flex justify-start items-center">
-                        <span class="glass text-sm backdrop-blur-lg bg-white/5 text-white-300 px-3 py-1 md:px-4 md:py-2 rounded-full" data-i18n="games.coming">
-                            Coming 2026
-                        </span>
+                    <div class="platform-links">
+                        <span class="glass text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full" data-i18n="games.game8.coming">Coming 2026</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Game 9 -->
+            <div class="game-card animate-fadeIn will-change coming-soon" style="animation-delay: 0.5s;">
+                <div class="game-image-container">
+                    <img src="9.webp" alt="Bright Raven" class="game-image coming-soon-blur">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                    <div class="construction-icon"><i class="fas fa-hammer"></i></div>
+                </div>
+                <div class="p-4 md:p-6 flex-grow">
+                    <div class="flex items-center gap-2 mb-2">
+                        <h3 class="text-lg md:text-xl font-bold mb-0">Bright Raven</h3>
+                        <span class="glass bg-purple-500/20 text-xs px-2 py-1 rounded-full" data-i18n="games.in_development">In Development</span>
+                    </div>
+                    <p class="text-white-400 mb-4 text-sm" data-i18n="games.game9.description">Мрачная линейная метроидвания, действие которой разворачивается в Европе XIV века, охваченной чумой. Игрок берёт на себя роль чумного доктора, вынужденного искать лекарство в мире, где каждый шаг к спасению оборачивается новой жертвой, а желание исцелить других медленно разрушает его собственную душу.</p>
+                    <div class="progress-container">
+                        <div class="progress-info">
+                            <span data-i18n="games.progress">Development Progress</span>
+                            <span id="progress-percentage">1%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progress-fill" style="width: 1%"></div>
+                        </div>
+                    </div>
+                    <div class="platform-links">
+                        <span class="glass text-sm bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full" data-i18n="games.game9.coming">Coming ????</span>
                     </div>
                 </div>
             </div>
@@ -774,23 +711,23 @@
     </section>
 
     <!-- Game Stats Section -->
-    <section id="stats" class="py-12 md:py-20 relative overflow-hidden bg-black/0">
-        <div class="absolute inset-0 bg-gradient-to-b from-black/0 to-black/0 z-0"></div>
+    <section id="stats" class="py-12 md:py-20 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/0 via-purple-900/5 to-black/0 z-0"></div>
         <div class="container mx-auto px-4 md:px-6 relative z-10">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center stats-grid">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">6</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.games">Games Developed</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">4.5K+</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.players">Total Players</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">★★★</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.rating">Avg Rating on YG</div>
                 </div>
-                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl bg-white/5 transition-all duration-300 hover:scale-105">
+                <div class="glass p-6 md:p-8 rounded-2xl backdrop-blur-xl transition-all duration-300 hover:scale-105 glow-purple-light">
                     <div class="text-3xl md:text-4xl font-bold mb-2 gradient-text">∞</div>
                     <div class="text-gray-300 text-sm" data-i18n="stats.sites">Creative Ideas</div>
                 </div>
@@ -798,87 +735,34 @@
         </div>
     </section>
 
-
     <!-- Footer -->
-    <footer class="py-8 md:py-12 bg-black/50 backdrop-blur-lg border-t border-white/10">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <img src="logo.png" alt="SafePlace Logo" class="w-8 h-8">
-                    <span class="text-xl font-bold gradient-text">SAFEGAMES</span>
-                </div>
-                <div class="flex flex-wrap justify-center gap-2 md:gap-1 mb-1 md:mb-0 max-w-[300px] md:max-w-none mx-auto md:mx-0">
-                    <a href="https://t.me/Safe_Place_official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-telegram"></i>
-                        </div>
-                    </a>
-                    <a href="https://safeplace.itch.io/" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-itch-io"></i>
-                        </div>
-                    </a>
-                    <a href="https://github.com/Safe-Place-Official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                    </a>
-                    <a href="https://www.youtube.com/@Safe--Place" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fab fa-youtube"></i>
-                        </div>
-                    </a>
-                    <a href="https://dzen.ru/safe_place_official" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fas fa-newspaper"></i>
-                        </div>
-                    </a>
-                    <a href="https://getgems.io/safeplace" target="_blank" class="social-media-btn">
-                        <div class="social-media-icon">
-                            <i class="fas fa-gem"></i>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="text-center text-gray-400 text-sm mt-6" data-i18n="footer.copyright">
-                © 2025 SafeGames. All rights reserved.
-            </div>
+    <footer class="py-8 md:py-12">
+        <div class="container mx-auto px-4 md:px-6 flex justify-center items-center">
+            <div class="text-center text-gray-400 text-sm" data-i18n="footer.copyright">© 2025 SafeGames. All rights reserved.</div>
         </div>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-
-        const linksByLang = {
-            ru: {
-                rocketYG: "https://yandex.ru/games/app/358275?lang=ru",
-            },
-            en: {
-                rocketYG: "https://yandex.ru/games/app/358275?lang=en",
-            }
-        };
-
         // Particles.js config
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', () => {
             particlesJS('particles-js', {
                 particles: {
                     number: { value: 80, density: { enable: true, value_area: 800 } },
-                    color: { value: "#ffffff" },
+                    color: { value: "#8b5cf6" },
                     shape: { type: "circle" },
                     opacity: { value: 0.5, random: true },
                     size: { value: 3, random: true },
-                    line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                    line_linked: { enable: true, distance: 150, color: "#8b5cf6", opacity: 0.4, width: 1 },
                     move: { enable: true, speed: 2, direction: "none", random: true, straight: false, out_mode: "out" }
                 },
                 interactivity: {
                     detect_on: "canvas",
-                    events: {
-                        onhover: { enable: false, mode: "repulse" },
-                        onclick: { enable: false, mode: "push" }
-                    }
+                    events: { onhover: { enable: false, mode: "repulse" }, onclick: { enable: false, mode: "push" } }
                 }
             });
         });
+
         // Translation data
         const translations = {
             ru: {
@@ -888,15 +772,15 @@
                 "hero.players": "4.5K+ Игроков",
                 "hero.since": "С 2022",
                 "hero.explore": "Исследовать",
-                "mobile.games": "Игры",
-                "mobile.stats": "Статистика",
-                "mobile.social": "Соцсети",
                 "games.title": "Наши продукты",
                 "games.new": "NEW",
                 "games.play": "Играть",
                 "games.visit": "Посетить",
                 "games.download": "Скачать",
-                "games.coming": "Релиз в 2026 году",
+                "games.in_development": "В разработке",
+                "games.progress": "Прогресс разработки",
+                "games.game9.coming": "Релиз в ???? году",
+                "games.game8.coming": "Релиз в 2026 году",
                 "games.game1.title": "Дуров, побег из тюрьмы",
                 "games.game1.description": "Представьте себя в роли Павла Дуров и попытайтесь совершить побег из французской тюрьмы.",
                 "games.game2.title": "Крестики нолики 2.0",
@@ -913,11 +797,12 @@
                 "games.game7.description": "Симулятор доставки пиццы при помощи дронов.",
                 "games.game8.title": "SafeGames",
                 "games.game8.description": "Площадка, где разработчики и игроки встречаются без посредников. Публикуй свои проекты, и находи игры, которые не пропадут в алгоритмах крупных магазинов.",
-                "stats.games": "Разработанно игр",
-                "stats.sites": "Креативных идей",
+                "games.game9.title": "Bright Raven",
+                "games.game9.description": "Мрачная линейная метроидвания, действие которой разворачивается в Европе XIV века, охваченной чумой. Игрок берёт на себя роль чумного доктора, вынужденного искать лекарство в мире, где каждый шаг к спасению оборачивается новой жертвой, а желание исцелить других медленно разрушает его собственную душу.",
+                "stats.games": "Разработано игр",
                 "stats.players": "Игроков",
                 "stats.rating": "Средний рейтинг на YG",
-                "social.title": "Наши соцсети",
+                "stats.sites": "Креативных идей",
                 "footer.copyright": "© 2025 SafeGames. Все права защищены."
             },
             en: {
@@ -927,15 +812,15 @@
                 "hero.players": "4.5K+ Players",
                 "hero.since": "Since 2022",
                 "hero.explore": "Explore",
-                "mobile.games": "Games",
-                "mobile.stats": "Stats",
-                "mobile.social": "Social",
                 "games.title": "OUR PRODUCTS",
                 "games.new": "NEW",
                 "games.play": "Play Now",
                 "games.visit": "Visit Now",
                 "games.download": "Download Now",
-                "games.coming": "Coming 2026",
+                "games.in_development": "In Development",
+                "games.progress": "Development Progress",
+                "games.game9.coming": "Coming ????",
+                "games.game8.coming": "Coming 2026",
                 "games.game1.title": "Durov, escape from prison",
                 "games.game1.description": "Imagine yourself as Pavel Durov and try to escape from a French prison.",
                 "games.game2.title": "Tic-Tac-Toe 2.0",
@@ -953,12 +838,10 @@
                 "games.game8.title": "SafeGames",
                 "games.game8.description": "A platform where developers and players meet without intermediaries. Publish your projects and find games that will not be lost in the algorithms of large stores.",
                 "stats.games": "Games Developed",
-                "stats.sites": "Creative Ideas",
                 "stats.players": "Players",
                 "stats.rating": "Avg Rating on YG",
-                "social.title": "Our Social Media",
+                "stats.sites": "Creative Ideas",
                 "footer.copyright": "© 2025 SafeGames. All rights reserved."
-
             }
         };
 
@@ -968,44 +851,21 @@
         // Function to translate the page
         function translatePage(lang) {
             currentLanguage = lang;
-            const langText = lang === 'ru' ? 'Русский' : 'English';
-            document.getElementById('language-text').textContent = langText;
-
-            // Update all elements with data-i18n attribute
+            document.getElementById('language-text').textContent = lang === 'ru' ? 'RU' : 'EN';
             document.querySelectorAll('[data-i18n]').forEach(element => {
                 const key = element.getAttribute('data-i18n');
                 if (translations[lang][key]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.value = translations[lang][key];
-                    } else {
-                        element.textContent = translations[lang][key];
-                    }
+                    element.textContent = translations[lang][key];
                 }
             });
-
-            // Update coming soon text
-            const comingSoonText = lang === 'ru' ? 'В разработке' : 'In Development';
-            document.querySelectorAll('.coming-soon').forEach(el => {
-                el.setAttribute('data-coming-soon-text', comingSoonText);
-            });
-
-            // Update progress text
-            const progressText = lang === 'ru' ? 'Прогресс разработки' : 'Development Progress';
-            document.querySelectorAll('.progress-info span:first-child').forEach(el => {
-                el.textContent = progressText;
-            });
-
-            document.querySelector('.yandex-link').href = linksByLang[lang].rocketYG;
+            document.querySelector('.yandex-link').href = `https://yandex.ru/games/app/358275?lang=${lang}`;
         }
 
         // Language switcher functionality
         document.querySelectorAll('.language-option').forEach(option => {
-            option.addEventListener('click', function (e) {
+            option.addEventListener('click', e => {
                 e.preventDefault();
-                const lang = this.getAttribute('data-lang');
-                translatePage(lang);
-
-                // Close dropdowns after selection
+                translatePage(option.getAttribute('data-lang'));
                 document.querySelectorAll('.language-dropdown').forEach(dropdown => {
                     dropdown.style.display = 'none';
                 });
@@ -1014,15 +874,15 @@
 
         // Toggle dropdowns on button click
         document.querySelectorAll('.language-btn').forEach(btn => {
-            btn.addEventListener('click', function (e) {
+            btn.addEventListener('click', e => {
                 e.stopPropagation();
-                const dropdown = this.nextElementSibling;
+                const dropdown = btn.nextElementSibling;
                 dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
             });
         });
 
         // Close dropdowns when clicking outside
-        document.addEventListener('click', function () {
+        document.addEventListener('click', () => {
             document.querySelectorAll('.language-dropdown').forEach(dropdown => {
                 dropdown.style.display = 'none';
             });
@@ -1030,46 +890,36 @@
 
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
+            anchor.addEventListener('click', e => {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(anchor.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth' });
                 }
             });
         });
 
         // Scroll down button
         document.getElementById('scroll-down').addEventListener('click', () => {
-            window.scrollBy({
-                top: window.innerHeight - 10,
-                behavior: 'smooth'
-            });
+            window.scrollBy({ top: window.innerHeight - 10, behavior: 'smooth' });
         });
 
         // Intersection Observer for animations
-        const observer = new IntersectionObserver((entries) => {
+        const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('animate-fadeIn');
                 }
             });
-        }, {
-            threshold: 0.1
-        });
+        }, { threshold: 0.1 });
 
-        document.querySelectorAll('.game-card, section').forEach(el => {
-            observer.observe(el);
-        });
+        document.querySelectorAll('.game-card, section').forEach(el => observer.observe(el));
 
         // Initialize page with Russian language
         translatePage('ru');
 
-        // Performance optimization - disable animations when user prefers reduced motion
-        const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-        if (mediaQuery.matches) {
+        // Disable animations for reduced motion
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             document.querySelectorAll('[class*="animate-"]').forEach(el => {
                 el.style.animation = 'none';
             });
@@ -1077,5 +927,3 @@
     </script>
 </body>
 </html>
-
-
